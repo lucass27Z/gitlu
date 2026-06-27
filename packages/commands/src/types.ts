@@ -345,7 +345,7 @@ export const StashEntrySchema = z.object({
   reference: z.string(),
   message: z.string(),
   branch: z.string().optional(),
-  is_Gitlu: z.coerce.boolean(),
+  is_gitlu: z.coerce.boolean(),
 });
 
 export type StashEntry = z.infer<typeof StashEntrySchema>;

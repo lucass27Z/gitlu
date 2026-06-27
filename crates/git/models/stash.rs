@@ -14,7 +14,7 @@ pub struct StashEntry {
     /// The branch it was created on (parsed from "On <branch>: …" when available).
     pub branch: Option<String>,
     /// Whether this is a Gitlu-managed stash (message matches `!!Gitlu<…>`).
-    pub is_Gitlu: bool,
+    pub is_gitlu: bool,
 }
 
 /// Quick numeric stat for a stash (from `git stash show --stat`).

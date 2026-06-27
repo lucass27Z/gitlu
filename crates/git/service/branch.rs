@@ -176,7 +176,7 @@ impl BranchService {
             Some(UncommittedChangesStrategy::StashOnCurrentBranch) => {
                 let did_create_stash = self
                     .stash()
-                    .push_Gitlu_stash(&current_branch.name, branch, false)
+                    .push_gitlu_stash(&current_branch.name, branch, false)
                     .await?;
 
                 match do_switch().await {
@@ -227,7 +227,7 @@ impl BranchService {
             Some(UncommittedChangesStrategy::StashOnCurrentBranch) => {
                 let did_create_stash = self
                     .stash()
-                    .push_Gitlu_stash(&current_branch.name, branch, true)
+                    .push_gitlu_stash(&current_branch.name, branch, true)
                     .await?;
 
                 match self
@@ -321,7 +321,7 @@ impl BranchService {
     pub async fn current_branch_stash(&self) -> Result<Option<BranchStash>, String> {
         let current_branch = self.get_current_branch().await?;
         self.stash()
-            .find_Gitlu_stash_for_branch(&current_branch.name)
+            .find_gitlu_stash_for_branch(&current_branch.name)
             .await
     }
 
@@ -329,7 +329,7 @@ impl BranchService {
     pub async fn pop_current_branch_stash(&self) -> Result<String, String> {
         let current_branch = self.get_current_branch().await?;
         self.stash()
-            .pop_Gitlu_stash_for_branch(&current_branch.name)
+            .pop_gitlu_stash_for_branch(&current_branch.name)
             .await
     }
 }
