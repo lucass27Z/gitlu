@@ -18,7 +18,7 @@ pub fn parse_stash_list(output: &str) -> Result<Vec<StashEntry>, String> {
         let message = parts.next().unwrap_or("").to_string();
 
         let index = parse_stash_index(&reference)?;
-        let is_Gitlu = parse_Gitlu_stash_message(&message).is_some();
+        let is_gitlu = parse_gitlu_stash_message(&message).is_some();
         let branch = parse_branch_from_message(&message);
 
         result.push(StashEntry {
@@ -26,7 +26,7 @@ pub fn parse_stash_list(output: &str) -> Result<Vec<StashEntry>, String> {
             reference,
             message,
             branch,
-            is_Gitlu,
+            is_gitlu,
         });
     }
 
@@ -96,7 +96,7 @@ pub fn parse_stash_file_status(output: &[u8]) -> Result<Vec<FileStatus>, String>
 /// Parse a `!!Gitlu<from> -> <to>` stash message.
 ///
 /// Returns `(from_branch, to_branch)` if the message matches the pattern.
-pub fn parse_Gitlu_stash_message(message: &str) -> Option<(String, String)> {
+pub fn parse_gitlu_stash_message(message: &str) -> Option<(String, String)> {
     let marker = "!!Gitlu<";
     let lower = message.to_ascii_lowercase();
     let lower_marker = marker.to_ascii_lowercase();
@@ -185,27 +185,27 @@ mod tests {
     // ── Pure function tests (no git data needed) ─────────────────────
 
     #[test]
-    fn test_parse_Gitlu_stash_message() {
+    fn test_parse_gitlu_stash_message() {
         let msg = "!!Gitlu<feature-branch> -> <main>";
-        let result = parse_Gitlu_stash_message(msg).unwrap();
+        let result = parse_gitlu_stash_message(msg).unwrap();
         assert_eq!(result.0, "feature-branch");
         assert_eq!(result.1, "main");
     }
 
     #[test]
-    fn test_parse_Gitlu_stash_message_case_insensitive() {
+    fn test_parse_gitlu_stash_message_case_insensitive() {
         // Also matches legacy !!Gitlu pattern (case-insensitive)
         let msg = "!!Gitlu<old-branch> -> <new-branch>";
-        let result = parse_Gitlu_stash_message(msg).unwrap();
+        let result = parse_gitlu_stash_message(msg).unwrap();
         assert_eq!(result.0, "old-branch");
         assert_eq!(result.1, "new-branch");
     }
 
     #[test]
-    fn test_parse_Gitlu_stash_message_invalid() {
-        assert!(parse_Gitlu_stash_message("Regular stash message").is_none());
-        assert!(parse_Gitlu_stash_message("!!Gitlu<> -> <main>").is_none());
-        assert!(parse_Gitlu_stash_message("!!Gitlu<feature> -> <>").is_none());
+    fn test_parse_gitlu_stash_message_invalid() {
+        assert!(parse_gitlu_stash_message("Regular stash message").is_none());
+        assert!(parse_gitlu_stash_message("!!Gitlu<> -> <main>").is_none());
+        assert!(parse_gitlu_stash_message("!!Gitlu<feature> -> <>").is_none());
     }
 
     #[test]
@@ -266,5 +266,98 @@ mod tests {
     fn parse_empty_stash_file_status() {
         let files = parse_stash_file_status(b"").unwrap();
         assert!(files.is_empty());
+    }
+
+    // ── is_gitlu field population tests ─────────────────────────────
+
+    #[test]
+    fn test_parse_stash_list_is_gitlu_true_for_gitlu_message() {
+        // A stash with the !!Gitlu marker should have is_gitlu=true
+        let output = "stash@{0}\x1f!!Gitlu<feature-branch> -> <main>";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 1);
+        assert!(entries[0].is_gitlu);
+        assert_eq!(entries[0].index, 0);
+        assert_eq!(entries[0].reference, "stash@{0}");
+    }
+
+    #[test]
+    fn test_parse_stash_list_is_gitlu_false_for_regular_message() {
+        // A regular stash message should have is_gitlu=false
+        let output = "stash@{0}\x1fOn main: WIP work";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 1);
+        assert!(!entries[0].is_gitlu);
+    }
+
+    #[test]
+    fn test_parse_stash_list_mixed_gitlu_and_regular() {
+        // Mix of gitlu and regular stashes - flags should be set correctly
+        let output = "stash@{0}\x1f!!Gitlu<feature> -> <main>\nstash@{1}\x1fOn main: WIP";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 2);
+        assert!(entries[0].is_gitlu);
+        assert!(!entries[1].is_gitlu);
+    }
+
+    #[test]
+    fn test_parse_stash_list_is_gitlu_with_new_branch_suffix() {
+        // The "(new)" suffix is added for new-branch stashes - still gitlu
+        let output = "stash@{0}\x1f!!Gitlu<main> -> <feature/new-branch> (new)";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 1);
+        assert!(entries[0].is_gitlu);
+    }
+
+    #[test]
+    fn test_parse_stash_list_skips_empty_lines() {
+        let output = "stash@{0}\x1fOn main: changes\n\nstash@{1}\x1fOn feature: work";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 2);
+        assert_eq!(entries[0].index, 0);
+        assert_eq!(entries[1].index, 1);
+    }
+
+    #[test]
+    fn test_parse_stash_list_gitlu_case_insensitive() {
+        // The marker matching is case-insensitive
+        let output = "stash@{0}\x1f!!gitlu<main> -> <feature>";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 1);
+        assert!(entries[0].is_gitlu);
+    }
+
+    #[test]
+    fn test_parse_gitlu_stash_message_preserves_branch_names() {
+        // Ensure branch names with slashes and dashes are preserved exactly
+        let msg = "!!Gitlu<feature/my-branch> -> <release/1.0>";
+        let result = parse_gitlu_stash_message(msg).unwrap();
+        assert_eq!(result.0, "feature/my-branch");
+        assert_eq!(result.1, "release/1.0");
+    }
+
+    #[test]
+    fn test_parse_gitlu_stash_message_with_new_suffix_in_full_message() {
+        // The " (new)" suffix after the closing > should not break parsing
+        let msg = "!!Gitlu<main> -> <feature/branch> (new)";
+        let result = parse_gitlu_stash_message(msg).unwrap();
+        assert_eq!(result.0, "main");
+        assert_eq!(result.1, "feature/branch");
+    }
+
+    #[test]
+    fn test_parse_gitlu_stash_message_missing_arrow() {
+        // Missing " -> " arrow should not match
+        assert!(parse_gitlu_stash_message("!!Gitlu<main> <feature>").is_none());
+    }
+
+    #[test]
+    fn test_parse_stash_list_gitlu_is_not_set_for_partial_marker() {
+        // A message with only part of the marker pattern should not be flagged
+        let output = "stash@{0}\x1f!!Gitlu<> -> <main>";
+        let entries = parse_stash_list(output).unwrap();
+        assert_eq!(entries.len(), 1);
+        // Empty from_branch → parse_gitlu_stash_message returns None → is_gitlu=false
+        assert!(!entries[0].is_gitlu);
     }
 }
