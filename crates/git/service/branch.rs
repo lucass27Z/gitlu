@@ -149,6 +149,27 @@ impl BranchService {
             .await
     }
 
+    /// Switches to an existing branch with an optional uncommitted-changes strategy.
+    ///
+    /// If `branch` refers to a remote branch under `origin/`, the branch is tracked automatically.
+    /// When `strategy` is `Some(UncommittedChangesStrategy::StashOnCurrentBranch)`, uncommitted changes
+    /// on the current branch are stashed before switching.
+    ///
+    /// # Parameters
+    ///
+    /// - `branch`: The branch to switch to.
+    /// - `strategy`: How to handle uncommitted changes during the switch.
+    ///
+    /// # Returns
+    ///
+    /// A status message describing the result of the switch.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let message = service.switch("main", None).await.unwrap();
+    /// assert!(message.contains("Switched to main"));
+    /// ```
     #[logger::logger]
     pub async fn switch(
         &self,
@@ -214,6 +235,17 @@ impl BranchService {
         }
     }
 
+    /// Creates a branch and switches to it.
+    ///
+    /// When `strategy` is [`UncommittedChangesStrategy::StashOnCurrentBranch`], any
+    /// current changes are stashed before the branch is created.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let message = service.create("feature/new-api", None).await.unwrap();
+    /// assert!(message.contains("Created and switched to feature/new-api"));
+    /// ```
     #[logger::logger]
     pub async fn create(
         &self,
@@ -317,6 +349,18 @@ impl BranchService {
         self.query().has_uncommitted_changes().await
     }
 
+    /// Finds the stash associated with the current branch.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let stash = service.current_branch_stash().await?;
+    /// if let Some(stash) = stash {
+    ///     println!("{}", stash.message);
+    /// }
+    /// ```
+    ///
+    /// @returns The stash for the current branch, or `None` if no matching stash exists.
     #[logger::logger]
     pub async fn current_branch_stash(&self) -> Result<Option<BranchStash>, String> {
         let current_branch = self.get_current_branch().await?;
@@ -325,6 +369,14 @@ impl BranchService {
             .await
     }
 
+    /// Removes the stash associated with the current branch.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let message = branch_service.pop_current_branch_stash().await?;
+    /// assert!(!message.is_empty());
+    /// ```
     #[logger::logger]
     pub async fn pop_current_branch_stash(&self) -> Result<String, String> {
         let current_branch = self.get_current_branch().await?;

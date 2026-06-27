@@ -2,9 +2,20 @@ use crate::models::stash::{StashEntry, StashQuickStat};
 use crate::models::status::FileStatus;
 use crate::parsers::status::parse_name_status_z;
 
-/// Parse the output of `git stash list --format=%gd%x1f%gs`.
+/// Parses `git stash list --format=%gd%x1f%gs` output into stash entries.
 ///
-/// Each line: `stash@{N}<US>message`
+/// Each non-empty line must contain a stash reference and message separated by the ASCII unit
+/// separator (`\x1f`).
+///
+/// # Examples
+///
+/// ```
+/// let output = "stash@{0}\x1fOn main: WIP\n";
+/// let entries = parse_stash_list(output).unwrap();
+/// assert_eq!(entries.len(), 1);
+/// assert_eq!(entries[0].reference, "stash@{0}");
+/// ```
+pub fn parse_stash_list(output: &str) -> Result<Vec<StashEntry>, String> {
 pub fn parse_stash_list(output: &str) -> Result<Vec<StashEntry>, String> {
     let mut result = Vec::new();
 
@@ -93,9 +104,17 @@ pub fn parse_stash_file_status(output: &[u8]) -> Result<Vec<FileStatus>, String>
     parse_name_status_z(output)
 }
 
-/// Parse a `!!Gitlu<from> -> <to>` stash message.
+/// Parses a `!!Gitlu<from> -> <to>` stash message.
 ///
-/// Returns `(from_branch, to_branch)` if the message matches the pattern.
+/// # Examples
+///
+/// ```
+/// let message = "Stashed changes !!Gitlu<main> -> <feature>";
+/// let parsed = parse_gitlu_stash_message(message);
+/// assert_eq!(parsed, Some(("main".to_string(), "feature".to_string())));
+/// ```
+///
+/// @returns `(from_branch, to_branch)` if the message matches the expected pattern.
 pub fn parse_gitlu_stash_message(message: &str) -> Option<(String, String)> {
     let marker = "!!Gitlu<";
     let lower = message.to_ascii_lowercase();
