@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "src/styles/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@gitru/ui/components",
+    "utils": "@gitru/ui/lib/utils",
+    "ui": "@gitru/ui/components",
+    "lib": "@gitru/ui/lib/utils",
+    "hooks": "@gitru/ui/hooks"
+  },
+  "registries": {
+    "@coss": "https://coss.com/ui/r/{name}.json",
+    "@ncdai": "https://chanhdai.com/r/{name}.json"
+  }
+}

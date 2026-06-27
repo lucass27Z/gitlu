@@ -1,0 +1,7 @@
+{
+  "title": "Search",
+  "icon": "Search",
+  "collapsible": false,
+  "defaultOpen": true,
+  "pages": ["global-search", "file-history", "author-activity"]
+}

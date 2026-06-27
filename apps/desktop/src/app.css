@@ -1,0 +1,68 @@
+@import "@gitru/ui/globals.css";
+
+@custom-variant hover (&:hover);
+
+* {
+  overscroll-behavior: none;
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+:root {
+  --font-sans: Geist;
+  --font-mono: GeistMono;
+
+  /* ? Custom Properties */
+  --main-custom-header-height: 40px;
+  --main-window-height: calc(100vh - var(--main-custom-header-height));
+
+  --main-left-sidebar-width: 40px;
+  --main-actual-content-width: calc(100vw - var(--main-left-sidebar-width));
+
+  --main-actual-content-padding: 8px;
+}
+
+*[data-tauri-drag-region] {
+  app-region: drag;
+}
+
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-muted) transparent;
+}
+
+input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.checkerboard {
+  display: inline-block;
+  background-image:
+    linear-gradient(45deg, #cccccc51 25%, transparent 25%),
+    linear-gradient(-45deg, #cccccc51 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #cccccc51 75%),
+    linear-gradient(-45deg, transparent 75%, #cccccc51 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.dragging,
+.dragging * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}

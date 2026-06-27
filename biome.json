@@ -1,0 +1,53 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "formatter": {
+    "formatWithErrors": true,
+    "indentWidth": 2,
+    "indentStyle": "space"
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/packages/commands",
+      "!**/.temp",
+      "!**/*.css",
+      "!**/drizzle",
+      "!**/tauri",
+      "!**/crates",
+      "!**/.tanstack",
+      "!**/routeTree.gen.ts"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "includes": ["!**/*.css"],
+    "rules": {
+      "a11y": {
+        "noNoninteractiveElementInteractions": "off",
+        "noSvgWithoutTitle": "off",
+        "noStaticElementInteractions": "off",
+        "noLabelWithoutControl": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off"
+      },
+      "correctness": {
+        "useUniqueElementIds": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noConsole": "off"
+      },
+      "performance": {
+        "noImgElement": "off",
+        "noNamespaceImport": "off"
+      },
+      "style": {
+        "noMagicNumbers": "off",
+        "useFilenamingConvention": "off"
+      }
+    }
+  }
+}
