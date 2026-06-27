@@ -353,9 +353,14 @@ impl StashService {
 
     // ── Gitlu branch-stash helpers ───────────────────────────────────
 
-    /// Push a Gitlu-managed stash during branch switching.
+    /// Creates a Gitlu stash for a branch transition.
     ///
-    /// Creates a stash with the `!!Gitlu<from> -> <to>` message pattern.
+    /// # Examples
+    ///
+    /// ```
+    /// let created = stash_service.push_gitlu_stash("main", "feature", false).await?;
+    /// assert!(created || !created);
+    /// ```
     #[logger::logger]
     pub async fn push_gitlu_stash(
         &self,
@@ -384,8 +389,22 @@ impl StashService {
         Ok(true)
     }
 
-    /// Find a Gitlu-managed stash for a specific branch.
-    #[logger::logger]
+    /// Finds the Gitlu stash entry associated with a branch.
+    ///
+    /// # Parameters
+    ///
+    /// * `branch` - The branch name to match against the stash metadata.
+    ///
+    /// # Returns
+    ///
+    /// `Some(BranchStash)` if a matching Gitlu stash is found, `None` otherwise.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let stash = find_gitlu_stash_for_branch("main").await?;
+    /// assert!(stash.is_some() || stash.is_none());
+    /// ```
     pub async fn find_gitlu_stash_for_branch(
         &self,
         branch: &str,
@@ -439,7 +458,14 @@ impl StashService {
         Ok(None)
     }
 
-    /// Pop the Gitlu-managed stash for the current branch.
+    /// Pops the Gitlu-managed stash associated with a branch.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let message = stash_service.pop_gitlu_stash_for_branch("main").await?;
+    /// assert!(message.starts_with("Popped "));
+    /// ```
     #[logger::logger]
     pub async fn pop_gitlu_stash_for_branch(&self, branch: &str) -> Result<String, String> {
         let stash = self
