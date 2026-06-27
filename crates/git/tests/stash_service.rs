@@ -452,7 +452,7 @@ fn stash_quick_stat_invalid_ref() {
 
 #[test]
 #[serial]
-fn push_Gitlu_stash() {
+fn push_gitlu_stash() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -462,7 +462,7 @@ fn push_Gitlu_stash() {
 
         let service = setup_stash_service(&repo);
         let result = service
-            .push_Gitlu_stash("main", "feature/target", false)
+            .push_gitlu_stash("main", "feature/target", false)
             .await;
 
         assert!(result.is_ok());
@@ -470,13 +470,13 @@ fn push_Gitlu_stash() {
         // Should have created a stash with Gitlu marker
         let stashes = service.list().await.unwrap();
         assert_eq!(stashes.len(), 1);
-        assert!(stashes[0].is_Gitlu);
+        assert!(stashes[0].is_gitlu);
     });
 }
 
 #[test]
 #[serial]
-fn find_Gitlu_stash_for_branch() {
+fn find_gitlu_stash_for_branch() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -488,13 +488,13 @@ fn find_Gitlu_stash_for_branch() {
 
         // Create a Gitlu stash: from "main" to "feature/target"
         service
-            .push_Gitlu_stash("main", "feature/target", false)
+            .push_gitlu_stash("main", "feature/target", false)
             .await
             .unwrap();
 
-        // find_Gitlu_stash_for_branch matches against from_branch
+        // find_gitlu_stash_for_branch matches against from_branch
         // So we look for stashes created FROM "main"
-        let found = service.find_Gitlu_stash_for_branch("main").await.unwrap();
+        let found = service.find_gitlu_stash_for_branch("main").await.unwrap();
 
         assert!(found.is_some());
         let branch_stash = found.unwrap();
@@ -514,7 +514,7 @@ fn find_Gitlu_stash_not_found() {
 
         // No stash exists
         let found = service
-            .find_Gitlu_stash_for_branch("nonexistent")
+            .find_gitlu_stash_for_branch("nonexistent")
             .await
             .unwrap();
 
@@ -524,7 +524,7 @@ fn find_Gitlu_stash_not_found() {
 
 #[test]
 #[serial]
-fn pop_Gitlu_stash_for_branch() {
+fn pop_gitlu_stash_for_branch() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -536,13 +536,13 @@ fn pop_Gitlu_stash_for_branch() {
 
         // Create a Gitlu stash: from "main" to "feature/target"
         service
-            .push_Gitlu_stash("main", "feature/target", false)
+            .push_gitlu_stash("main", "feature/target", false)
             .await
             .unwrap();
         assert!(!repo.has_changes());
 
         // Pop it - find by from_branch
-        let result = service.pop_Gitlu_stash_for_branch("main").await;
+        let result = service.pop_gitlu_stash_for_branch("main").await;
 
         assert!(result.is_ok());
         assert!(repo.has_changes());
@@ -550,5 +550,123 @@ fn pop_Gitlu_stash_for_branch() {
         // Stash should be gone
         let stashes = service.list().await.unwrap();
         assert!(stashes.is_empty());
+    });
+}
+
+#[test]
+#[serial]
+fn push_gitlu_stash_no_changes_returns_false() {
+    run_async(async {
+        let repo = TestRepo::new();
+        repo.commit_file("README.md", "# Test", "Initial commit");
+
+        let service = setup_stash_service(&repo);
+
+        // No changes to stash → should return Ok(false)
+        let result = service
+            .push_gitlu_stash("main", "feature/target", false)
+            .await;
+
+        assert!(result.is_ok());
+        assert!(!result.unwrap(), "expected false when no changes to stash");
+
+        // No stash should have been created
+        let stashes = service.list().await.unwrap();
+        assert!(stashes.is_empty());
+    });
+}
+
+#[test]
+#[serial]
+fn push_gitlu_stash_new_branch_flag() {
+    run_async(async {
+        let repo = TestRepo::new();
+        repo.commit_file("README.md", "# Test", "Initial commit");
+        repo.create_file("changes.txt", "content");
+        repo.add("changes.txt");
+
+        let service = setup_stash_service(&repo);
+
+        // is_new_branch=true appends " (new)" to the stash message
+        let result = service
+            .push_gitlu_stash("main", "feature/new", true)
+            .await;
+
+        assert!(result.is_ok());
+        assert!(result.unwrap());
+
+        let stashes = service.list().await.unwrap();
+        assert_eq!(stashes.len(), 1);
+        // is_gitlu must be true even with the " (new)" suffix
+        assert!(stashes[0].is_gitlu);
+        assert!(stashes[0].message.contains("(new)"));
+    });
+}
+
+#[test]
+#[serial]
+fn pop_gitlu_stash_for_branch_not_found_returns_error() {
+    run_async(async {
+        let repo = TestRepo::new();
+        repo.commit_file("README.md", "# Test", "Initial commit");
+
+        let service = setup_stash_service(&repo);
+
+        // No stash exists at all - error expected
+        let result = service.pop_gitlu_stash_for_branch("main").await;
+        assert!(result.is_err());
+        let err = result.unwrap_err();
+        assert!(err.contains("No !!Gitlu stash found"), "unexpected error: {err}");
+    });
+}
+
+#[test]
+#[serial]
+fn find_gitlu_stash_for_branch_does_not_match_regular_stashes() {
+    run_async(async {
+        let repo = TestRepo::new();
+        repo.commit_file("README.md", "# Test", "Initial commit");
+
+        // Create a regular (non-gitlu) stash
+        repo.create_file("changes.txt", "content");
+        repo.stash_push(Some("regular stash message"));
+
+        let service = setup_stash_service(&repo);
+
+        // A regular stash should not be found as a gitlu stash
+        let found = service.find_gitlu_stash_for_branch("main").await.unwrap();
+        assert!(found.is_none());
+    });
+}
+
+#[test]
+#[serial]
+fn push_gitlu_stash_message_contains_branch_names() {
+    run_async(async {
+        let repo = TestRepo::new();
+        repo.commit_file("README.md", "# Test", "Initial commit");
+        repo.create_file("file.txt", "data");
+        repo.add("file.txt");
+
+        let service = setup_stash_service(&repo);
+        service
+            .push_gitlu_stash("develop", "feature/login", false)
+            .await
+            .unwrap();
+
+        let stashes = service.list().await.unwrap();
+        assert_eq!(stashes.len(), 1);
+        assert!(stashes[0].message.contains("develop"));
+        assert!(stashes[0].message.contains("feature/login"));
+        assert!(stashes[0].is_gitlu);
+
+        // find should resolve from_branch correctly
+        let found = service
+            .find_gitlu_stash_for_branch("develop")
+            .await
+            .unwrap()
+            .unwrap();
+        assert_eq!(found.from_branch, "develop");
+        assert_eq!(found.to_branch, "feature/login");
     });
 }
