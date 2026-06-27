@@ -1,7 +1,7 @@
 import {
   checkForUpdateByChannel,
   downloadAndInstallUpdateByChannel,
-} from "@gitru/commands";
+} from "@Gitlu/commands";
 import { listen } from "@tauri-apps/api/event";
 import { relaunch } from "@tauri-apps/plugin-process";
 import { useCallback, useEffect, useRef, useState } from "react";

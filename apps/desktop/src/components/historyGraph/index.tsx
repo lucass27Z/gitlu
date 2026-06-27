@@ -1,10 +1,10 @@
-import type { GraphRef, GraphRow } from "@gitru/commands";
-import { Badge } from "@gitru/ui/components/badge";
-import { Input } from "@gitru/ui/components/input";
+import type { GraphRef, GraphRow } from "@Gitlu/commands";
+import { Badge } from "@Gitlu/ui/components/badge";
+import { Input } from "@Gitlu/ui/components/input";
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@gitru/ui/components/toggle-group";
+} from "@Gitlu/ui/components/toggle-group";
 import { useMemo, useRef, useState } from "react";
 import { useOnInView } from "react-intersection-observer";
 import LoaderIndicator from "@/components/loaderIndicator";

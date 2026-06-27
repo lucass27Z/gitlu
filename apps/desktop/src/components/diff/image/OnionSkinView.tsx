@@ -1,4 +1,4 @@
-import { Slider } from "@gitru/ui/components/slider";
+import { Slider } from "@Gitlu/ui/components/slider";
 import { useState } from "react";
 import { formatBytes } from "./ImageDiffViewer";
 import type { ImageDiffViewProps } from "./types";

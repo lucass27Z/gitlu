@@ -3,7 +3,7 @@ import Wordmark from "@/components/wordmark";
 
 export const gitConfig = {
   user: "ruru-m07",
-  repo: "gitru",
+  repo: "Gitlu",
 };
 
 export function baseOptions(): BaseLayoutProps {
@@ -33,7 +33,7 @@ export function baseOptions(): BaseLayoutProps {
         url: "/changelog",
       },
     ],
-    githubUrl: "https://github.com/ruru-m07/gitru",
+    githubUrl: "https://github.com/ruru-m07/Gitlu",
     themeSwitch: {
       mode: "light-dark",
     },

@@ -3,7 +3,7 @@ use crate::context::RepoContext;
 use crate::models::commit::{CommitInfo, CommitMessage, FullCommitInfo};
 use crate::parsers::commit::{parse_commit_record, parse_shortstat};
 use crate::parsers::status::parse_name_status_z;
-use crate::runner::GitRunOptions;
+use crate::runner::GitlunOptions;
 use std::sync::Arc;
 
 pub struct CommitService {
@@ -34,7 +34,7 @@ impl CommitService {
                                 "-1",
                                 "--format=%H%x1f%an%x1f%ae%x1f%at%x1f%cn%x1f%ce%x1f%ct%x1f%s%x1f%b",
                             ],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -65,7 +65,7 @@ impl CommitService {
                                 "--format=%H%x1f%an%x1f%ae%x1f%at%x1f%cn%x1f%ce%x1f%ct%x1f%s%x1f%b",
                                 &hash,
                             ],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -74,7 +74,7 @@ impl CommitService {
                     let stats_output = runner
                         .run_with_options(
                             &["show", "--shortstat", "--format=", &hash],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -82,7 +82,7 @@ impl CommitService {
                     let files_output = runner
                         .run_with_options(
                             &["show", "--name-status", "-z", "--format=", &hash],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
                     let files = parse_name_status_z(files_output.as_bytes())?;
@@ -112,7 +112,7 @@ impl CommitService {
             .runner
             .run_with_options(
                 &["rev-parse", "--is-bare-repository"],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await
             .unwrap_or_default();
@@ -134,7 +134,7 @@ impl CommitService {
             .run_with_input(
                 &args,
                 &message,
-                GitRunOptions::default_read().allow_exit_codes(&[1]),
+                GitlunOptions::default_read().allow_exit_codes(&[1]),
             )
             .await
             .map_err(|err| normalize_commit_error(&err))?;
@@ -146,7 +146,7 @@ impl CommitService {
         let commit_id = self
             .ctx
             .runner
-            .run_with_options(&["rev-parse", "HEAD"], GitRunOptions::default_read())
+            .run_with_options(&["rev-parse", "HEAD"], GitlunOptions::default_read())
             .await
             .unwrap_or_default();
 

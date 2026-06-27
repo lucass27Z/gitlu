@@ -1,5 +1,5 @@
-// import type { FileStatusKind, GetDiffResponse } from "@gitru/commands";
-// import { Card, CardContent } from "@gitru/ui/components/card";
+// import type { FileStatusKind, GetDiffResponse } from "@Gitlu/commands";
+// import { Card, CardContent } from "@Gitlu/ui/components/card";
 // import { FoldVertical } from "lucide-react";
 // import React, {
 //   useCallback,

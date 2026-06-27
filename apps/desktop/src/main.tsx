@@ -1,4 +1,4 @@
-import { CommandManagerProvider } from "@gitru/ui/components/command";
+import { CommandManagerProvider } from "@Gitlu/ui/components/command";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { StrictMode, useCallback, useEffect, useMemo, useRef } from "react";
@@ -65,9 +65,9 @@ const isEmbeddedRuntime = () => {
 
 const enableDevDiagnostics = import.meta.env.DEV && isEmbeddedRuntime();
 
-const TAB_RUNTIME_STATE_EVENT = "gitru:tab-runtime-state";
-const TAB_RUNTIME_READY_EVENT = "gitru:tab-runtime-ready";
-const TAB_RUNTIME_REQUEST_SYNC_EVENT = "gitru:tab-runtime-request-sync";
+const TAB_RUNTIME_STATE_EVENT = "Gitlu:tab-runtime-state";
+const TAB_RUNTIME_READY_EVENT = "Gitlu:tab-runtime-ready";
+const TAB_RUNTIME_REQUEST_SYNC_EVENT = "Gitlu:tab-runtime-request-sync";
 const TAB_WEBVIEW_LABEL_PREFIX = "tab-webview:";
 const HOST_SHELL_ROUTE = "/app";
 const SNAPSHOT_EMIT_DEBOUNCE_MS = 180;

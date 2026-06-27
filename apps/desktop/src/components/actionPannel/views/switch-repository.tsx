@@ -1,22 +1,22 @@
-import { RepositoryInfo } from "@gitru/commands";
+import { RepositoryInfo } from "@Gitlu/commands";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@gitru/ui/components/avatar";
-import { Badge } from "@gitru/ui/components/badge";
+} from "@Gitlu/ui/components/avatar";
+import { Badge } from "@Gitlu/ui/components/badge";
 import {
   CommandItem,
   CommandListView,
   CommandViewConfig,
-} from "@gitru/ui/components/command";
-import { EmptyMedia } from "@gitru/ui/components/empty";
-import { Kbd, KbdGroup } from "@gitru/ui/components/kbd";
+} from "@Gitlu/ui/components/command";
+import { EmptyMedia } from "@Gitlu/ui/components/empty";
+import { Kbd, KbdGroup } from "@Gitlu/ui/components/kbd";
 import {
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
+} from "@Gitlu/ui/components/tooltip";
 import {
   ArrowDown,
   ArrowDownIcon,

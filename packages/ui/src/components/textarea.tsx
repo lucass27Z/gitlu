@@ -2,7 +2,7 @@
 
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { mergeProps } from "@base-ui/react/merge-props";
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import type * as React from "react";
 
 type TextareaProps = React.ComponentProps<"textarea"> & {

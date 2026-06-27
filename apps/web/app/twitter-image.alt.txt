@@ -1,1 +1,1 @@
-Gitru - A Git client
+Gitlu - A Git client

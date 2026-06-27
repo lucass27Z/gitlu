@@ -2,7 +2,7 @@
 
 import { Checkbox as CheckboxPrimitive } from "@base-ui-components/react/checkbox";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 
 function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
   return (

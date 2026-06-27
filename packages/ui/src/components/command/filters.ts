@@ -1,6 +1,6 @@
 "use client";
 
-import { useAutocompleteFilter } from "@gitru/ui/components/autocomplete";
+import { useAutocompleteFilter } from "@Gitlu/ui/components/autocomplete";
 import * as React from "react";
 
 export type CommandFilterFunction<TItem = unknown> = (

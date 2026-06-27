@@ -1,6 +1,6 @@
-import { GetStatusResponse, GraphRow } from "@gitru/commands";
-import { Stashed } from "@gitru/icon";
-import { Mascot } from "@gitru/mascot";
+import { GetStatusResponse, GraphRow } from "@Gitlu/commands";
+import { Stashed } from "@Gitlu/icon";
+import { Mascot } from "@Gitlu/mascot";
 import {
   AlertDialog,
   AlertDialogClose,
@@ -10,16 +10,16 @@ import {
   AlertDialogPopup,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@gitru/ui/components/alert-dialog";
+} from "@Gitlu/ui/components/alert-dialog";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@gitru/ui/components/avatar";
-import { Badge } from "@gitru/ui/components/badge";
-import { Button } from "@gitru/ui/components/button";
-import { useCommandNavigation } from "@gitru/ui/components/command";
-import { CopyButton } from "@gitru/ui/components/copy-button";
+} from "@Gitlu/ui/components/avatar";
+import { Badge } from "@Gitlu/ui/components/badge";
+import { Button } from "@Gitlu/ui/components/button";
+import { useCommandNavigation } from "@Gitlu/ui/components/command";
+import { CopyButton } from "@Gitlu/ui/components/copy-button";
 import {
   Dialog,
   DialogClose,
@@ -29,17 +29,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@gitru/ui/components/dialog";
-import { Group, GroupSeparator } from "@gitru/ui/components/group";
-import { Input } from "@gitru/ui/components/input";
+} from "@Gitlu/ui/components/dialog";
+import { Group, GroupSeparator } from "@Gitlu/ui/components/group";
+import { Input } from "@Gitlu/ui/components/input";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
   InputGroupTextarea,
-} from "@gitru/ui/components/input-group";
-import { Kbd } from "@gitru/ui/components/kbd";
-import { Label } from "@gitru/ui/components/label";
+} from "@Gitlu/ui/components/input-group";
+import { Kbd } from "@Gitlu/ui/components/kbd";
+import { Label } from "@Gitlu/ui/components/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,16 +52,16 @@ import {
   MenuItem,
   MenuPopup,
   MenuTrigger,
-} from "@gitru/ui/components/menu";
-import { Separator } from "@gitru/ui/components/separator";
-import { Tabs, TabsList, TabsPanel, TabsTab } from "@gitru/ui/components/tabs";
+} from "@Gitlu/ui/components/menu";
+import { Separator } from "@Gitlu/ui/components/separator";
+import { Tabs, TabsList, TabsPanel, TabsTab } from "@Gitlu/ui/components/tabs";
 import {
   Tooltip,
   TooltipPopup,
   TooltipProvider,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/tooltip";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { open } from "@tauri-apps/plugin-dialog";
 import {
@@ -248,7 +248,7 @@ function GitPageLayout() {
               />
             </div>
             {/* <h1 className="text-3xl font-[350]">Add your first repository</h1> */}
-            <span className="text-3xl">Gitru</span>
+            <span className="text-3xl">Gitlu</span>
           </span>
           <div className="flex justify-between items-end px-[calc(--spacing(3)-1px)]">
             <h1 className="text-muted-foreground font-normal">
@@ -256,7 +256,7 @@ function GitPageLayout() {
               start!
             </h1>
             <a
-              href="https://gitru.app/docs"
+              href="https://Gitlu.app/docs"
               className="text-sm font-normal text-muted-foreground hover:underline opacity-70 hover:opacity-100 transition-opacity"
               target="_blank"
             >
@@ -2307,7 +2307,7 @@ const StashPocView = memo(function StashPocView({
         ) : mode === "branch" && !selectedReference ? (
           <div className="w-full h-full flex items-center justify-center">
             <span className="text-sm text-muted-foreground">
-              No !!Gitru stash for this branch
+              No !!Gitlu stash for this branch
             </span>
           </div>
         ) : !selectedReference ? (

@@ -1,4 +1,4 @@
-import { Button } from "@gitru/ui/components/button";
+import { Button } from "@Gitlu/ui/components/button";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import Logo from "@/components/logo";

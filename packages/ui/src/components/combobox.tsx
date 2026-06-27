@@ -1,10 +1,10 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui-components/react/combobox";
-import { Input } from "@gitru/ui/components/input";
-import { ScrollArea } from "@gitru/ui/components/scroll-area";
+import { Input } from "@Gitlu/ui/components/input";
+import { ScrollArea } from "@Gitlu/ui/components/scroll-area";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { ChevronsUpDownIcon, XIcon } from "lucide-react";
 import * as React from "react";
 

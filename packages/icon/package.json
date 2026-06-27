@@ -1,5 +1,5 @@
 {
-  "name": "@gitru/icon",
+  "name": "@Gitlu/icon",
   "version": "0.1.0",
   "module": "index.ts",
   "type": "module",
@@ -12,7 +12,7 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@gitru/ui": "*",
+    "@Gitlu/ui": "*",
     "@types/react": "catalog:"
   },
   "dependencies": {

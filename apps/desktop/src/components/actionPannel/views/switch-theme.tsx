@@ -2,9 +2,9 @@ import {
   CommandListGroup,
   CommandListView,
   CommandViewConfig,
-} from "@gitru/ui/components/command";
-import { Kbd } from "@gitru/ui/components/kbd";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/command";
+import { Kbd } from "@Gitlu/ui/components/kbd";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { CheckIcon, CornerDownLeftIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";

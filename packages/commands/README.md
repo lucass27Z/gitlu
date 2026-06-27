@@ -1,4 +1,4 @@
-# @gitru/commands
+# @Gitlu/commands
 
 it's typed bindings of rust's tauri commands
 

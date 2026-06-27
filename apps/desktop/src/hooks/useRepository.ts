@@ -15,7 +15,7 @@ import type {
   PatchRange,
   RepositoryOrigin,
   UncommittedChangesStrategy,
-} from "@gitru/commands";
+} from "@Gitlu/commands";
 import {
   InfiniteData,
   type UseQueryOptions,

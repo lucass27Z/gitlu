@@ -1,12 +1,12 @@
-import { Badge } from "@gitru/ui/components/badge";
-import { Tabs, TabsList, TabsTab } from "@gitru/ui/components/tabs";
+import { Badge } from "@Gitlu/ui/components/badge";
+import { Tabs, TabsList, TabsTab } from "@Gitlu/ui/components/tabs";
 import {
   Tooltip,
   TooltipCreateHandle,
   TooltipPopup,
   TooltipProvider,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
+} from "@Gitlu/ui/components/tooltip";
 
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { LucideIcon } from "lucide-react";

@@ -8,7 +8,7 @@ import {
   type RepositoryInfo,
   refreshRepositoryInfo,
   removeRepository,
-} from "@gitru/commands";
+} from "@Gitlu/commands";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useAppStore } from "@/store/useAppStore";

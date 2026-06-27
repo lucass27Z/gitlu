@@ -1,6 +1,6 @@
 //! Integration tests for StashService.
 //!
-//! Tests stash push/pop, apply, drop, and gitru-specific stash features.
+//! Tests stash push/pop, apply, drop, and Gitlu-specific stash features.
 
 mod common;
 
@@ -447,12 +447,12 @@ fn stash_quick_stat_invalid_ref() {
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// GITRU STASH TESTS (Branch-aware stashing)
+// Gitlu STASH TESTS (Branch-aware stashing)
 // ══════════════════════════════════════════════════════════════════════════════
 
 #[test]
 #[serial]
-fn push_gitru_stash() {
+fn push_Gitlu_stash() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -462,21 +462,21 @@ fn push_gitru_stash() {
 
         let service = setup_stash_service(&repo);
         let result = service
-            .push_gitru_stash("main", "feature/target", false)
+            .push_Gitlu_stash("main", "feature/target", false)
             .await;
 
         assert!(result.is_ok());
 
-        // Should have created a stash with gitru marker
+        // Should have created a stash with Gitlu marker
         let stashes = service.list().await.unwrap();
         assert_eq!(stashes.len(), 1);
-        assert!(stashes[0].is_gitru);
+        assert!(stashes[0].is_Gitlu);
     });
 }
 
 #[test]
 #[serial]
-fn find_gitru_stash_for_branch() {
+fn find_Gitlu_stash_for_branch() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -486,15 +486,15 @@ fn find_gitru_stash_for_branch() {
 
         let service = setup_stash_service(&repo);
 
-        // Create a gitru stash: from "main" to "feature/target"
+        // Create a Gitlu stash: from "main" to "feature/target"
         service
-            .push_gitru_stash("main", "feature/target", false)
+            .push_Gitlu_stash("main", "feature/target", false)
             .await
             .unwrap();
 
-        // find_gitru_stash_for_branch matches against from_branch
+        // find_Gitlu_stash_for_branch matches against from_branch
         // So we look for stashes created FROM "main"
-        let found = service.find_gitru_stash_for_branch("main").await.unwrap();
+        let found = service.find_Gitlu_stash_for_branch("main").await.unwrap();
 
         assert!(found.is_some());
         let branch_stash = found.unwrap();
@@ -505,7 +505,7 @@ fn find_gitru_stash_for_branch() {
 
 #[test]
 #[serial]
-fn find_gitru_stash_not_found() {
+fn find_Gitlu_stash_not_found() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -514,7 +514,7 @@ fn find_gitru_stash_not_found() {
 
         // No stash exists
         let found = service
-            .find_gitru_stash_for_branch("nonexistent")
+            .find_Gitlu_stash_for_branch("nonexistent")
             .await
             .unwrap();
 
@@ -524,7 +524,7 @@ fn find_gitru_stash_not_found() {
 
 #[test]
 #[serial]
-fn pop_gitru_stash_for_branch() {
+fn pop_Gitlu_stash_for_branch() {
     run_async(async {
         let repo = TestRepo::new();
         repo.commit_file("README.md", "# Test", "Initial commit");
@@ -534,15 +534,15 @@ fn pop_gitru_stash_for_branch() {
 
         let service = setup_stash_service(&repo);
 
-        // Create a gitru stash: from "main" to "feature/target"
+        // Create a Gitlu stash: from "main" to "feature/target"
         service
-            .push_gitru_stash("main", "feature/target", false)
+            .push_Gitlu_stash("main", "feature/target", false)
             .await
             .unwrap();
         assert!(!repo.has_changes());
 
         // Pop it - find by from_branch
-        let result = service.pop_gitru_stash_for_branch("main").await;
+        let result = service.pop_Gitlu_stash_for_branch("main").await;
 
         assert!(result.is_ok());
         assert!(repo.has_changes());

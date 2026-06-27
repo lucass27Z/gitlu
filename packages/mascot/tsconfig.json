@@ -16,7 +16,7 @@
     "target": "ES2022",
     "jsx": "react-jsx",
     "paths": {
-      "@gitru/mascot/*": ["./src/*"]
+      "@Gitlu/mascot/*": ["./src/*"]
     }
   },
   "include": ["."],

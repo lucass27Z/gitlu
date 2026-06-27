@@ -2,9 +2,9 @@ import {
   CommandListView,
   CommandShortcut,
   CommandViewConfig,
-} from "@gitru/ui/components/command";
-import { EmptyMedia } from "@gitru/ui/components/empty";
-import { Kbd, KbdGroup } from "@gitru/ui/components/kbd";
+} from "@Gitlu/ui/components/command";
+import { EmptyMedia } from "@Gitlu/ui/components/empty";
+import { Kbd, KbdGroup } from "@Gitlu/ui/components/kbd";
 import { useNavigate } from "@tanstack/react-router";
 import {
   ArrowDownIcon,

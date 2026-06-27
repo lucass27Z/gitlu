@@ -11,11 +11,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@gitru/ui/components",
-    "utils": "@gitru/ui/lib/utils",
-    "ui": "@gitru/ui/components",
-    "lib": "@gitru/ui/lib/utils",
-    "hooks": "@gitru/ui/hooks"
+    "components": "@Gitlu/ui/components",
+    "utils": "@Gitlu/ui/lib/utils",
+    "ui": "@Gitlu/ui/components",
+    "lib": "@Gitlu/ui/lib/utils",
+    "hooks": "@Gitlu/ui/hooks"
   },
   "registries": {
     "@coss": "https://coss.com/ui/r/{name}.json",

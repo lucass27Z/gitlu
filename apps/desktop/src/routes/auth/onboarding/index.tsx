@@ -1,7 +1,7 @@
-import { buttonVariants } from "@gitru/ui/components/button";
-import { Label } from "@gitru/ui/components/label";
-import { RadioGroup, RadioGroupItem } from "@gitru/ui/components/radio-group";
-import { cn } from "@gitru/ui/lib/utils";
+import { buttonVariants } from "@Gitlu/ui/components/button";
+import { Label } from "@Gitlu/ui/components/label";
+import { RadioGroup, RadioGroupItem } from "@Gitlu/ui/components/radio-group";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronRightIcon } from "lucide-react";
 import { useTheme } from "next-themes";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog as SheetPrimitive } from "@base-ui-components/react/dialog";
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { XIcon } from "lucide-react";
 

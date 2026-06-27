@@ -1,9 +1,9 @@
-import { Button } from "@gitru/ui/components/button";
-import { CommandPanel, CommandViewConfig } from "@gitru/ui/components/command";
-import { Group, GroupSeparator, GroupText } from "@gitru/ui/components/group";
-import { Input } from "@gitru/ui/components/input";
-import { Kbd } from "@gitru/ui/components/kbd";
-import { Label } from "@gitru/ui/components/label";
+import { Button } from "@Gitlu/ui/components/button";
+import { CommandPanel, CommandViewConfig } from "@Gitlu/ui/components/command";
+import { Group, GroupSeparator, GroupText } from "@Gitlu/ui/components/group";
+import { Input } from "@Gitlu/ui/components/input";
+import { Kbd } from "@Gitlu/ui/components/kbd";
+import { Label } from "@Gitlu/ui/components/label";
 import { open } from "@tauri-apps/plugin-dialog";
 import { FolderOpenIcon, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";

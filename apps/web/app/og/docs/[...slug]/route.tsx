@@ -17,7 +17,7 @@ export async function GET(
     <DefaultImage
       title={page.data.title}
       description={page.data.description}
-      site="Gitru"
+      site="Gitlu"
     />,
     {
       width: 1200,

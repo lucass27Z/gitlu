@@ -2,7 +2,7 @@
 
 import { Field as FieldPrimitive } from "@base-ui-components/react/field";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 
 function Field({ className, ...props }: FieldPrimitive.Root.Props) {
   return (

@@ -17,13 +17,13 @@ use crate::{
         status::FileStatusKind,
     },
     parsers::stash::validate_stash_ref,
-    runner::GitRunOptions,
+    runner::GitlunOptions,
     service::request_queue::{CancellationToken, RequestQueueManager},
 };
 use base64::{Engine as _, engine::general_purpose::STANDARD as BASE64_STANDARD};
 
 const EMPTY_TREE_HASH: &str = "4b825dc642cb6eb9a060e54bf8d69288fbee4904";
-const IMAGE_DIFF_TEMP_DIR: &str = "gitru-image-diff";
+const IMAGE_DIFF_TEMP_DIR: &str = "Gitlu-image-diff";
 /// Maximum image size (in bytes) to include as base64 in the response (~10 MB).
 const MAX_ASSET_INLINE_BYTES: usize = 10 * 1024 * 1024;
 /// Maximum age of temp files before they are eligible for cleanup (1 hour).
@@ -326,7 +326,7 @@ impl DiffService {
             .runner
             .run_with_options_bytes_unlocked(
                 &["show", "--no-ext-diff", "--no-textconv", &spec],
-                GitRunOptions::default_read().allow_exit_codes(&[1, 128]),
+                GitlunOptions::default_read().allow_exit_codes(&[1, 128]),
             )
             .await
             .ok()?;
@@ -356,7 +356,7 @@ impl DiffService {
             .runner
             .run_with_options_bytes_unlocked(
                 &["show", "--no-ext-diff", "--no-textconv", &spec],
-                GitRunOptions::default_read().allow_exit_codes(&[1, 128]),
+                GitlunOptions::default_read().allow_exit_codes(&[1, 128]),
             )
             .await
             .ok()?;
@@ -507,7 +507,7 @@ impl DiffService {
             .runner
             .run_with_options_bytes_unlocked(
                 &["show", "--no-ext-diff", "--no-textconv", &spec],
-                GitRunOptions::default_read().allow_exit_codes(&[1, 128]),
+                GitlunOptions::default_read().allow_exit_codes(&[1, 128]),
             )
             .await
             .ok()?;
@@ -526,7 +526,7 @@ impl DiffService {
             .runner
             .run_with_options_bytes_unlocked(
                 &["show", "--no-ext-diff", "--no-textconv", &spec],
-                GitRunOptions::default_read().allow_exit_codes(&[1, 128]),
+                GitlunOptions::default_read().allow_exit_codes(&[1, 128]),
             )
             .await
             .ok()?;
@@ -665,7 +665,7 @@ async fn fetch_patch_text_impl(
                 "--include-untracked".to_string(),
                 reference.to_string(),
             ],
-            GitRunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
+            GitlunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
             token,
         )
         .await?;
@@ -687,7 +687,7 @@ async fn fetch_patch_text_impl(
                 "--".to_string(),
                 file_path.to_string(),
             ],
-            GitRunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
+            GitlunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
             token,
         )
         .await?;
@@ -698,7 +698,7 @@ async fn fetch_patch_text_impl(
     let out = run_git_text_unlocked_cancellable(
         runner.clone(),
         build_diff_command_for_scope(file_path, diff_scope),
-        GitRunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
+        GitlunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
         token,
     )
     .await?;
@@ -725,7 +725,7 @@ async fn fetch_patch_text_impl(
                 "--".to_string(),
                 file_path.to_string(),
             ],
-            GitRunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
+            GitlunOptions::default_read().allow_exit_codes(PATCH_ALLOW_EXIT_CODES),
             token,
         )
         .await?
@@ -814,7 +814,7 @@ async fn resolve_commit_diff_base(
     let parents = runner
         .run_with_options_unlocked(
             &["show", "-s", "--format=%P", commit_hash],
-            GitRunOptions::default_read(),
+            GitlunOptions::default_read(),
         )
         .await?;
 
@@ -917,7 +917,7 @@ async fn wait_for_cancellation(token: &CancellationToken) {
 async fn run_git_text_unlocked_cancellable(
     runner: crate::runner::GitCommandRunner,
     args: Vec<String>,
-    options: GitRunOptions,
+    options: GitlunOptions,
     token: &CancellationToken,
 ) -> Result<String, String> {
     if token.is_cancelled() {

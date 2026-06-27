@@ -1,6 +1,6 @@
 "use client";
 
-import { Mascot, MascotExpression } from "@gitru/mascot";
+import { Mascot, MascotExpression } from "@Gitlu/mascot";
 import { Clock } from "lucide-react";
 import { motion, useAnimate } from "motion/react";
 import Image from "next/image";
@@ -82,7 +82,7 @@ const Hero = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="text-base text-black/80 mb-4 max-w-140"
         >
-          Gitru is lightweight and powerful Git client designed to simplify and
+          Gitlu is lightweight and powerful Git client designed to simplify and
           abstract away the complexity of Git.
         </motion.p>
         <motion.div
@@ -106,7 +106,7 @@ const Hero = () => {
             className={cn(
               buttonVariants({ variant: "secondary", size: "default" }),
             )}
-            href={"https://github.com/ruru-m07/gitru"}
+            href={"https://github.com/ruru-m07/Gitlu"}
             target="_blank"
           >
             <GithubIcon />

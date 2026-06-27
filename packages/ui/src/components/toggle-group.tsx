@@ -2,13 +2,13 @@
 
 import { Toggle as TogglePrimitive } from "@base-ui-components/react/toggle";
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui-components/react/toggle-group";
-import { Separator } from "@gitru/ui/components/separator";
+import { Separator } from "@Gitlu/ui/components/separator";
 import {
   Toggle as ToggleComponent,
   toggleVariants,
-} from "@gitru/ui/components/toggle";
+} from "@Gitlu/ui/components/toggle";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { type VariantProps } from "class-variance-authority";
 import * as React from "react";
 

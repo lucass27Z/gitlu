@@ -53,7 +53,7 @@ const Page = () => {
       <Link href="/">
         <motion.img
           src="/logo192.png"
-          alt="gitru logo"
+          alt="Gitlu logo"
           className="absolute size-8 md:size-7 left-3 md:left-4 top-4 md:top-20"
           layoutId="logo"
         />

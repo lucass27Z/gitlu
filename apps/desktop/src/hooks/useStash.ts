@@ -7,7 +7,7 @@ import type {
   StashQuickStat,
   StashRestoreFileParams,
   StashShowResponse,
-} from "@gitru/commands";
+} from "@Gitlu/commands";
 import {
   type UseQueryOptions,
   useMutation,

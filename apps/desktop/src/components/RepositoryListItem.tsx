@@ -1,6 +1,6 @@
-import { type RepositoryInfo } from "@gitru/commands";
-import { Badge } from "@gitru/ui/components/badge";
-import { Button } from "@gitru/ui/components/button";
+import { type RepositoryInfo } from "@Gitlu/commands";
+import { Badge } from "@Gitlu/ui/components/badge";
+import { Button } from "@Gitlu/ui/components/button";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -8,12 +8,12 @@ import {
   ContextMenuLabel,
   ContextMenuSeparator,
   ContextMenuTrigger,
-} from "@gitru/ui/components/context-menu";
+} from "@Gitlu/ui/components/context-menu";
 import {
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
+} from "@Gitlu/ui/components/tooltip";
 import {
   ArrowDown,
   ArrowUp,

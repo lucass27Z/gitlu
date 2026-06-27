@@ -19,9 +19,9 @@ export async function generateMetadata({
   params,
 }: LayoutProps<"/">): Promise<Metadata> {
   return {
-    metadataBase: new URL("https://gitru.app"),
-    title: "Gitru",
-    description: "Gitru - A Git client",
+    metadataBase: new URL("https://Gitlu.app"),
+    title: "Gitlu",
+    description: "Gitlu - A Git client",
   };
 }
 
@@ -56,9 +56,9 @@ export default function Layout({ children }: LayoutProps<"/">) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#ffffff" />
-        <meta name="description" content="Gitru - A Git client" />
+        <meta name="description" content="Gitlu - A Git client" />
 
-        <title>Gitru</title>
+        <title>Gitlu</title>
       </head>
       <body className="flex flex-col min-h-screen">
         <Provider>{children}</Provider>

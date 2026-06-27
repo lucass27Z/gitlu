@@ -1,17 +1,17 @@
-import type { FileStatusKind } from "@gitru/commands";
-import { Button } from "@gitru/ui/components/button";
-import { CopyButton } from "@gitru/ui/components/copy-button";
-import { Group, GroupSeparator } from "@gitru/ui/components/group";
-import { Kbd, KbdGroup } from "@gitru/ui/components/kbd";
-import { Label } from "@gitru/ui/components/label";
+import type { FileStatusKind } from "@Gitlu/commands";
+import { Button } from "@Gitlu/ui/components/button";
+import { CopyButton } from "@Gitlu/ui/components/copy-button";
+import { Group, GroupSeparator } from "@Gitlu/ui/components/group";
+import { Kbd, KbdGroup } from "@Gitlu/ui/components/kbd";
+import { Label } from "@Gitlu/ui/components/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@gitru/ui/components/popover";
-import { Separator } from "@gitru/ui/components/separator";
-import { Switch } from "@gitru/ui/components/switch";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/popover";
+import { Separator } from "@Gitlu/ui/components/separator";
+import { Switch } from "@Gitlu/ui/components/switch";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { parseDiffFromFile } from "@pierre/diffs";
 import {
   MultiFileDiff,
@@ -42,7 +42,7 @@ import { useDiffViewerSettings } from "@/components/diff/useDiffViewSettingStore
 import { getStatusIcon } from "@/components/getStatusIcon";
 import HistoryGraph from "@/components/historyGraph";
 import LoaderIndicator from "@/components/loaderIndicator";
-import { GitruBorderedSVG } from "@/components/svgs/gitru-borderd";
+import { GitluBorderedSVG } from "@/components/svgs/Gitlu-borderd";
 import {
   useGetCommitById,
   useGetCurrentBranch,
@@ -980,7 +980,7 @@ const EmptyStateScreen = () => {
   return (
     <div className="w-full flex justify-center max-h-[calc(var(--layout-height)---spacing(14))] h-full bg-background">
       <div className="w-full h-full flex flex-col items-center justify-center -mt-20">
-        <GitruBorderedSVG />
+        <GitluBorderedSVG />
         <div className="flex flex-col gap-0.5 w-60 select-none">
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground text-sm font-light">

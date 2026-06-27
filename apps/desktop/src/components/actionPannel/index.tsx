@@ -1,9 +1,9 @@
-import { RepositoryInfo } from "@gitru/commands";
+import { RepositoryInfo } from "@Gitlu/commands";
 import {
   CommandPanelRoot,
   CommandViewConfig,
   createCommandViewRegistry,
-} from "@gitru/ui/components/command";
+} from "@Gitlu/ui/components/command";
 import { BranchItem, useBranchListView } from "./views/branch-list";
 import { useCloneRepositoryView } from "./views/clone-repository";
 import { useConfirmCheckoutView } from "./views/confirm-checkout";

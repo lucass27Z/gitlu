@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { CircleAlertIcon } from "lucide-react";
 import * as React from "react";
 import type { CommandViewConfig, CommandViewContext } from "./types.js";

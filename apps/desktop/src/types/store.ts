@@ -1,4 +1,4 @@
-import { type RepositoryInfo } from "@gitru/commands";
+import { type RepositoryInfo } from "@Gitlu/commands";
 
 export type SelectionSource = "worktree" | "stash" | "history";
 

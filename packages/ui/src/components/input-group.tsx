@@ -1,9 +1,9 @@
 "use client";
 
-import { Input, type InputProps } from "@gitru/ui/components/input";
-import { Textarea, type TextareaProps } from "@gitru/ui/components/textarea";
+import { Input, type InputProps } from "@Gitlu/ui/components/input";
+import { Textarea, type TextareaProps } from "@Gitlu/ui/components/textarea";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
 

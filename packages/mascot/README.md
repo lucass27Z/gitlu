@@ -1,9 +1,9 @@
-# Gitru's mascot
+# Gitlu's mascot
 
 ## Quick use
 
 ```tsx
-import { Mascot } from "@gitru/mascot";
+import { Mascot } from "@Gitlu/mascot";
 
 export const Example = () => <Mascot />;
 ```
@@ -13,7 +13,7 @@ export const Example = () => <Mascot />;
 Control the expression directly:
 
 ```tsx
-import { Mascot } from "@gitru/mascot";
+import { Mascot } from "@Gitlu/mascot";
 
 export const Example = () => (
 	<Mascot expression={{ eyes: "closed", mouth: "open" }} />
@@ -23,7 +23,7 @@ export const Example = () => (
 Invert the default hover behavior:
 
 ```tsx
-import { Mascot } from "@gitru/mascot";
+import { Mascot } from "@Gitlu/mascot";
 
 export const Example = () => (
 	<Mascot
@@ -38,7 +38,7 @@ export const Example = () => (
 Control interaction from outside:
 
 ```tsx
-import { Mascot } from "@gitru/mascot";
+import { Mascot } from "@Gitlu/mascot";
 import { useState } from "react";
 
 export const Example = () => {
@@ -59,7 +59,7 @@ export const Example = () => {
 ## Particles
 
 ```tsx
-import { Mascot } from "@gitru/mascot";
+import { Mascot } from "@Gitlu/mascot";
 
 export const Example = () => (
 	<Mascot
@@ -76,7 +76,7 @@ export const Example = () => (
 ## Shared state
 
 ```tsx
-import { Mascot, MascotProvider, useMascot } from "@gitru/mascot";
+import { Mascot, MascotProvider, useMascot } from "@Gitlu/mascot";
 
 const Controls = () => {
 	const { setInteraction } = useMascot();

@@ -1,7 +1,7 @@
 "use client";
 
 import { Input as InputPrimitive } from "@base-ui/react/input";
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import type * as React from "react";
 
 type InputProps = Omit<

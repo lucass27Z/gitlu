@@ -8,7 +8,7 @@ use crate::models::branch::{Branch, BranchInfo};
 use crate::models::origin::RepositoryOrigin;
 use crate::parsers::branch::{BRANCH_STANDARD_FORMAT, parse_branch_records};
 use crate::parsers::origin::parse_remote_url;
-use crate::runner::GitRunOptions;
+use crate::runner::GitlunOptions;
 
 pub struct QueryService {
     ctx: Arc<RepoContext>,
@@ -34,7 +34,7 @@ impl QueryService {
                     let branch = runner
                         .run_with_options(
                             &["symbolic-ref", "--short", "-q", "HEAD"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await
                         .map_err(|e| {
@@ -81,7 +81,7 @@ impl QueryService {
                                 BRANCH_STANDARD_FORMAT,
                                 &format!("refs/heads/{branch_name}"),
                             ],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -111,7 +111,7 @@ impl QueryService {
                     let output = runner
                         .run_with_options(
                             &["status", "--porcelain", "-z", "--untracked-files=all"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
                     Ok(!output.is_empty())
@@ -136,7 +136,7 @@ impl QueryService {
                     let url = runner
                         .run_with_options(
                             &["remote", "get-url", "origin"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await
                         .map_err(|_| "No origin remote found".to_string())?;

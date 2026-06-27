@@ -6,10 +6,10 @@ use crate::{
     models::stash::{BranchStash, StashEntry, StashQuickStat, StashShowResponse},
     models::status::FileStatusKind,
     parsers::stash::{
-        branch_name_matches, parse_gitru_stash_message, parse_stash_file_status, parse_stash_list,
+        branch_name_matches, parse_Gitlu_stash_message, parse_stash_file_status, parse_stash_list,
         parse_stash_stat, validate_stash_ref,
     },
-    runner::GitRunOptions,
+    runner::GitlunOptions,
 };
 
 const DEFAULT_STASH_REF: &str = "stash@{0}";
@@ -42,7 +42,7 @@ impl StashService {
                     let output = runner
                         .run_with_options(
                             &["stash", "list", "--format=%gd%x1f%gs"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -66,7 +66,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "show", "--stat", reference],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -83,7 +83,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "show", "--stat", reference],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -92,7 +92,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "show", "--name-status", "-z", reference],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -131,7 +131,7 @@ impl StashService {
         let output = self
             .ctx
             .runner
-            .run_with_options(&args, GitRunOptions::default_read())
+            .run_with_options(&args, GitlunOptions::default_read())
             .await?;
 
         if output == "No local changes to save" {
@@ -161,7 +161,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "pop", "--quiet", &resolved_ref],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await;
 
@@ -204,7 +204,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "apply", "--quiet", &resolved_ref],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -221,7 +221,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "drop", "--quiet", reference],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -234,7 +234,7 @@ impl StashService {
     pub async fn clear(&self) -> Result<String, String> {
         self.ctx
             .runner
-            .run_with_options(&["stash", "clear"], GitRunOptions::default_read())
+            .run_with_options(&["stash", "clear"], GitlunOptions::default_read())
             .await?;
 
         self.ctx.cache.invalidate_all();
@@ -254,7 +254,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "branch", branch_name, &resolved_ref],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -304,7 +304,7 @@ impl StashService {
                     .runner
                     .run_with_options(
                         &["checkout", reference, "--", new_path],
-                        GitRunOptions::default_read(),
+                        GitlunOptions::default_read(),
                     )
                     .await?;
 
@@ -324,7 +324,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["checkout", reference, "--", file_path],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -351,27 +351,27 @@ impl StashService {
         Ok(())
     }
 
-    // ── Gitru branch-stash helpers ───────────────────────────────────
+    // ── Gitlu branch-stash helpers ───────────────────────────────────
 
-    /// Push a Gitru-managed stash during branch switching.
+    /// Push a Gitlu-managed stash during branch switching.
     ///
-    /// Creates a stash with the `!!Gitru<from> -> <to>` message pattern.
+    /// Creates a stash with the `!!Gitlu<from> -> <to>` message pattern.
     #[logger::logger]
-    pub async fn push_gitru_stash(
+    pub async fn push_Gitlu_stash(
         &self,
         from_branch: &str,
         to_branch: &str,
         is_new_branch: bool,
     ) -> Result<bool, String> {
         let suffix = if is_new_branch { " (new)" } else { "" };
-        let stash_msg = format!("!!Gitru<{from_branch}> -> <{to_branch}>{suffix}");
+        let stash_msg = format!("!!Gitlu<{from_branch}> -> <{to_branch}>{suffix}");
 
         let output = self
             .ctx
             .runner
             .run_with_options(
                 &["stash", "push", "-u", "-m", &stash_msg],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await
             .map_err(|e| format!("Failed to stash changes: {e}"))?;
@@ -384,9 +384,9 @@ impl StashService {
         Ok(true)
     }
 
-    /// Find a Gitru-managed stash for a specific branch.
+    /// Find a Gitlu-managed stash for a specific branch.
     #[logger::logger]
-    pub async fn find_gitru_stash_for_branch(
+    pub async fn find_Gitlu_stash_for_branch(
         &self,
         branch: &str,
     ) -> Result<Option<BranchStash>, String> {
@@ -395,7 +395,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["stash", "list", "--format=%gd%x1f%gs"],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await?;
 
@@ -412,7 +412,7 @@ impl StashService {
                 continue;
             };
 
-            let Some((from_branch, to_branch)) = parse_gitru_stash_message(message) else {
+            let Some((from_branch, to_branch)) = parse_Gitlu_stash_message(message) else {
                 continue;
             };
 
@@ -439,13 +439,13 @@ impl StashService {
         Ok(None)
     }
 
-    /// Pop the Gitru-managed stash for the current branch.
+    /// Pop the Gitlu-managed stash for the current branch.
     #[logger::logger]
-    pub async fn pop_gitru_stash_for_branch(&self, branch: &str) -> Result<String, String> {
+    pub async fn pop_Gitlu_stash_for_branch(&self, branch: &str) -> Result<String, String> {
         let stash = self
-            .find_gitru_stash_for_branch(branch)
+            .find_Gitlu_stash_for_branch(branch)
             .await?
-            .ok_or_else(|| format!("No !!Gitru stash found for branch '{branch}'"))?;
+            .ok_or_else(|| format!("No !!Gitlu stash found for branch '{branch}'"))?;
 
         self.pop(Some(&stash.reference)).await
     }
@@ -463,7 +463,7 @@ impl StashService {
             .runner
             .run_with_options(
                 &["rev-parse", "--verify", "--quiet", reference],
-                GitRunOptions::default_read(),
+                GitlunOptions::default_read(),
             )
             .await
             .is_ok()

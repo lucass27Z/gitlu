@@ -79,7 +79,7 @@ const allSegments: TypeSegment[] = [
 //   delay: 0,
 // },
 // {
-//   text: " version 6.9.0-zen (gitru@home) (gcc version 14.1.1)",
+//   text: " version 6.9.0-zen (Gitlu@home) (gcc version 14.1.1)",
 //   className: typeStyles.muted,
 //   instant: true,
 //   blink: false,
@@ -110,7 +110,7 @@ const allSegments: TypeSegment[] = [
 //   instant: true,
 // },
 // {
-//   text: "gitru",
+//   text: "Gitlu",
 //   instant: true,
 // },
 // {
@@ -154,7 +154,7 @@ const allSegments: TypeSegment[] = [
 // },
 // { text: "", delay: 200, blink: false },
 // {
-//   text: "  Gitru is a lightweight git client for humans.",
+//   text: "  Gitlu is a lightweight git client for humans.",
 //   cursor: "primary",
 //   blink: false,
 //   instant: true,
@@ -210,7 +210,7 @@ const allSegments: TypeSegment[] = [
 // },
 // { text: "", delay: 100, cursor: "primary", blink: false },
 // {
-//   text: "\n  - Gitru is a lightweight git client for humans.",
+//   text: "\n  - Gitlu is a lightweight git client for humans.",
 //   cursor: "primary",
 //   blink: false,
 //   speed: 3,
@@ -249,7 +249,7 @@ const allSegments: TypeSegment[] = [
 //     text: `Welcome to waitlist terminal [Version 0.0.0]
 
 // System Notice:
-//   - Gitru is a lightweight git client for humans.
+//   - Gitlu is a lightweight git client for humans.
 //   - A Warapper around git, with just a better UX.
 //   - Click. Commit. Continue.
 
@@ -270,7 +270,7 @@ const allSegments: TypeSegment[] = [
 const bootingSegmentsText = `Welcome to waitlist terminal [Version 0.0.0]
 
 System Notice:
-  - Gitru is a lightweight git client for humans.
+  - Gitlu is a lightweight git client for humans.
   - A wrapper around git, with just a better UX.
   - Click. Commit. Continue.
 
@@ -448,7 +448,7 @@ const Waitlist = () => {
         <Link href="/">
           <motion.img
             src="/logo192.png"
-            alt="gitru logo"
+            alt="Gitlu logo"
             className="size-9"
             layoutId="logo"
           />
@@ -457,7 +457,7 @@ const Waitlist = () => {
         <div className="flex-1 flex flex-col items-center gap-6">
           {/* <div className="text-center space-y-2">
             <p className="font-mono text-xs text-muted-foreground uppercase tracking-wide">
-              Gitru waitlist
+              Gitlu waitlist
             </p>
             <h1 className="text-2xl font-semibold">Join the waitlist</h1>
             <p className="text-sm text-muted-foreground max-w-md mx-auto">
@@ -591,7 +591,7 @@ const Waitlist = () => {
                 <span className="text-primary">{">"}</span>
                 {"  "}
                 <span className="text-primary">{"<"}</span>
-                {")    ~Gitru UwU\n"}
+                {")    ~Gitlu UwU\n"}
                 {"   /    |\n"}
                 {"乀(ˍ, ل ل"}
               </pre>
@@ -602,7 +602,7 @@ const Waitlist = () => {
                 <span className="text-primary">{"o"}</span>
                 {"  "}
                 <span className="text-primary">{"o"}</span>
-                {")    ~Gitru UwU \n"}
+                {")    ~Gitlu UwU \n"}
                 {"   /    |\n"}
                 {"乀(ˍ, ل ل"}
               </pre>
@@ -685,7 +685,7 @@ const Waitlist = () => {
       <Link href="/">
         <motion.img
           src="/logo192.png"
-          alt="gitru logo"
+          alt="Gitlu logo"
           className="absolute size-7 left-4 top-4 mt-10"
           layoutId="logo"
         />

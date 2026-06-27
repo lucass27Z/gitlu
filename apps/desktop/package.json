@@ -1,5 +1,5 @@
 {
-  "name": "gitru",
+  "name": "Gitlu",
   "private": true,
   "version": "0.0.0-beta.6",
   "type": "module",
@@ -67,10 +67,10 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@gitru/icon": "*",
-    "@gitru/ui": "*",
-    "@gitru/commands": "*",
-    "@gitru/mascot": "*",
+    "@Gitlu/icon": "*",
+    "@Gitlu/ui": "*",
+    "@Gitlu/commands": "*",
+    "@Gitlu/mascot": "*",
     "@tauri-apps/cli": "2.10.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

@@ -2,7 +2,7 @@
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui-components/react/collapsible";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 
 function Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;

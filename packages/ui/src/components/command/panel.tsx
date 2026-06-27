@@ -8,8 +8,8 @@ import {
   CommandDialogTrigger,
   CommandFooter,
   CommandInput,
-} from "@gitru/ui/components/command";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/command";
+import { cn } from "@Gitlu/ui/lib/utils";
 import * as React from "react";
 import {
   CommandManagerProvider,

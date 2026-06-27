@@ -1,4 +1,4 @@
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import React from "react";
 
 const PageLayout = ({

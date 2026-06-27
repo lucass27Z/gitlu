@@ -1,7 +1,7 @@
 "use client";
 
 import { Accordion as AccordionPrimitive } from "@base-ui-components/react/accordion";
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
 
 function Accordion(props: AccordionPrimitive.Root.Props) {

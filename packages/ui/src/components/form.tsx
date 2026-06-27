@@ -2,7 +2,7 @@
 
 import { Form as FormPrimitive } from "@base-ui-components/react/form";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 
 function Form({ className, ...props }: FormPrimitive.Props) {
   return (

@@ -1,4 +1,4 @@
-import { type RepositoryInfo } from "@gitru/commands";
+import { type RepositoryInfo } from "@Gitlu/commands";
 import { toast } from "sonner";
 import { create } from "zustand";
 import {

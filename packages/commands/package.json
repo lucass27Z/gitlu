@@ -1,5 +1,5 @@
 {
-  "name": "@gitru/commands",
+  "name": "@Gitlu/commands",
   "module": "index.ts",
   "type": "module",
   "exports": {

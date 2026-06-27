@@ -2,12 +2,12 @@ import {
   type FileStatus,
   GetStatusResponse,
   openWithApp,
-} from "@gitru/commands";
-import { Badge } from "@gitru/ui/components/badge";
-import { Button } from "@gitru/ui/components/button";
-import * as contextMenu from "@gitru/ui/components/context-menu";
-import { Label } from "@gitru/ui/components/label";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/commands";
+import { Badge } from "@Gitlu/ui/components/badge";
+import { Button } from "@Gitlu/ui/components/button";
+import * as contextMenu from "@Gitlu/ui/components/context-menu";
+import { Label } from "@Gitlu/ui/components/label";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { UseMutateAsyncFunction } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import {

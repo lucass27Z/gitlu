@@ -1,5 +1,5 @@
-import type { AssetDiff } from "@gitru/commands";
-import { Tabs, TabsList, TabsTab } from "@gitru/ui/components/tabs";
+import type { AssetDiff } from "@Gitlu/commands";
+import { Tabs, TabsList, TabsTab } from "@Gitlu/ui/components/tabs";
 import { onion } from "@lucide/lab";
 import {
   Blend,

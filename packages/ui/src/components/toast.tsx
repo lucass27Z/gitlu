@@ -1,8 +1,8 @@
 "use client";
 
 import { Toast } from "@base-ui-components/react/toast";
-import { buttonVariants } from "@gitru/ui/components/button";
-import { cn } from "@gitru/ui/lib/utils";
+import { buttonVariants } from "@Gitlu/ui/components/button";
+import { cn } from "@Gitlu/ui/lib/utils";
 import {
   CircleAlertIcon,
   CircleCheckIcon,

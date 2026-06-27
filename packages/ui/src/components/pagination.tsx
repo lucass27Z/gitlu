@@ -1,7 +1,7 @@
 import { mergeProps } from "@base-ui-components/react/merge-props";
 import { useRender } from "@base-ui-components/react/use-render";
-import { Button, buttonVariants } from "@gitru/ui/components/button";
-import { cn } from "@gitru/ui/lib/utils";
+import { Button, buttonVariants } from "@Gitlu/ui/components/button";
+import { cn } from "@Gitlu/ui/lib/utils";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,

@@ -1,4 +1,4 @@
-import { createRepoContext, disposeRepoContext } from "@gitru/commands";
+import { createRepoContext, disposeRepoContext } from "@Gitlu/commands";
 
 type ScopeId = string;
 

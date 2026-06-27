@@ -13,8 +13,8 @@ pub struct StashEntry {
     pub message: String,
     /// The branch it was created on (parsed from "On <branch>: …" when available).
     pub branch: Option<String>,
-    /// Whether this is a Gitru-managed stash (message matches `!!Gitru<…>`).
-    pub is_gitru: bool,
+    /// Whether this is a Gitlu-managed stash (message matches `!!Gitlu<…>`).
+    pub is_Gitlu: bool,
 }
 
 /// Quick numeric stat for a stash (from `git stash show --stat`).
@@ -34,7 +34,7 @@ pub struct StashShowResponse {
     pub files: Vec<FileStatus>,
 }
 
-/// Gitru-managed stash created during branch switching.
+/// Gitlu-managed stash created during branch switching.
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BranchStash {
     pub reference: String,

@@ -1674,7 +1674,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gitru"
+name = "Gitlu"
 version = "0.1.0"
 dependencies = [
  "git",

@@ -1,8 +1,8 @@
 import {
   CommandListView,
   CommandViewConfig,
-} from "@gitru/ui/components/command";
-import { Kbd } from "@gitru/ui/components/kbd";
+} from "@Gitlu/ui/components/command";
+import { Kbd } from "@Gitlu/ui/components/kbd";
 import { CheckIcon, CornerDownLeftIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useAppStore } from "@/store/useAppStore";

@@ -1,4 +1,4 @@
-import type { FileStatus } from "@gitru/commands";
+import type { FileStatus } from "@Gitlu/commands";
 import type { FileSelectionIdentity, SelectionSource } from "@/types/store";
 
 export type ResolvedFileSelection =

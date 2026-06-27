@@ -5,7 +5,7 @@ use crate::{
     models::diff::{DiffScope, PatchAction, PatchRange},
     models::status::GetStatusResponse,
     parsers::status::parse_porcelain_v2,
-    runner::{GitRunOptions, validate_relative_path},
+    runner::{GitlunOptions, validate_relative_path},
 };
 use std::sync::Arc;
 
@@ -23,7 +23,7 @@ impl ActionService {
         let output = self
             .ctx
             .runner
-            .run_with_options(&["--version"], GitRunOptions::default_read())
+            .run_with_options(&["--version"], GitlunOptions::default_read())
             .await?;
 
         Ok(output.trim().to_string())
@@ -45,7 +45,7 @@ impl ActionService {
                     let output = runner
                         .run_with_options(
                             &["status", "--porcelain=v2", "--untracked-files=all", "-z"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -62,7 +62,7 @@ impl ActionService {
             .runner
             .run_with_options(
                 &["fetch", "--prune"],
-                GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(60)),
+                GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(60)),
             )
             .await?;
         self.ctx.cache.invalidate_all();
@@ -80,7 +80,7 @@ impl ActionService {
                 .runner
                 .run_with_options(
                     &["add", "-A"],
-                    GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                    GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
                 )
                 .await?;
         } else {
@@ -103,7 +103,7 @@ impl ActionService {
                 .runner
                 .run_with_options(
                     &["restore", "--staged", "."],
-                    GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                    GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
                 )
                 .await?;
         } else {
@@ -201,7 +201,7 @@ impl ActionService {
 
         self.ctx
             .runner
-            .run_with_input(&args, &patch, GitRunOptions::default_read())
+            .run_with_input(&args, &patch, GitlunOptions::default_read())
             .await?;
 
         self.ctx.cache.invalidate_all();
@@ -213,7 +213,7 @@ impl ActionService {
             .runner
             .run_with_options(
                 &["restore", "--source=HEAD", "--staged", "--worktree", "."],
-                GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
             )
             .await?;
 
@@ -221,7 +221,7 @@ impl ActionService {
             .runner
             .run_with_options(
                 &["clean", "-fd"],
-                GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
             )
             .await?;
 
@@ -258,7 +258,7 @@ impl ActionService {
                     "--",
                     file,
                 ],
-                GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
             )
             .await;
 
@@ -267,7 +267,7 @@ impl ActionService {
             .runner
             .run_with_options(
                 &["clean", "-fd", "--", file],
-                GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
             )
             .await;
 
@@ -296,7 +296,7 @@ impl ActionService {
             .runner
             .run_with_options(
                 &arg_refs,
-                GitRunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
+                GitlunOptions::default_read().with_timeout(std::time::Duration::from_secs(30)),
             )
             .await
     }
@@ -325,7 +325,7 @@ impl ActionService {
 
         self.ctx
             .runner
-            .run_with_options(&args, GitRunOptions::default_read())
+            .run_with_options(&args, GitlunOptions::default_read())
             .await
     }
 }

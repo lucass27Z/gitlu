@@ -10,8 +10,8 @@ import {
   CommandPanel,
   CommandSeparator,
   CommandShortcut,
-} from "@gitru/ui/components/command";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/command";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import * as React from "react";
 import { useCommandSearch } from "../manager.js";

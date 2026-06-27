@@ -1,13 +1,13 @@
-import { openWithApp } from "@gitru/commands";
-import { CursorIcon, GhosttyIcon, VSCodeIcon } from "@gitru/icon";
-import { Button } from "@gitru/ui/components/button";
-import { Group, GroupSeparator } from "@gitru/ui/components/group";
+import { openWithApp } from "@Gitlu/commands";
+import { CursorIcon, GhosttyIcon, VSCodeIcon } from "@Gitlu/icon";
+import { Button } from "@Gitlu/ui/components/button";
+import { Group, GroupSeparator } from "@Gitlu/ui/components/group";
 import {
   Menu,
   MenuItem,
   MenuPopup,
   MenuTrigger,
-} from "@gitru/ui/components/menu";
+} from "@Gitlu/ui/components/menu";
 import { Check, ChevronDownIcon } from "lucide-react";
 import {
   useGetCommitById,

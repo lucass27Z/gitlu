@@ -11,8 +11,8 @@ import {
   AutocompleteItem,
   AutocompleteList,
   AutocompleteSeparator,
-} from "@gitru/ui/components/autocomplete";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/autocomplete";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { SearchIcon } from "lucide-react";
 import type * as React from "react";
 

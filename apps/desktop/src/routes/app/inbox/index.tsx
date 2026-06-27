@@ -4,8 +4,8 @@ import PageLayout from "@/components/pageLayout";
 //   Avatar,
 //   AvatarFallback,
 //   AvatarImage,
-// } from "@gitru/ui/components/avatar";
-// import { Button } from "@gitru/ui/components/button";
+// } from "@Gitlu/ui/components/avatar";
+// import { Button } from "@Gitlu/ui/components/button";
 // import { GitPullRequestArrow, ListFilterPlus, Settings2 } from "lucide-react";
 // import { ResizableLayout } from "@/components/resizableLayout";
 
@@ -61,7 +61,7 @@ function RouteComponent() {
                 </span>
               </div>
               <div>
-                <span className="text-sm font-[450]">gitru</span>
+                <span className="text-sm font-[450]">Gitlu</span>
                 <span className="text-sm text-muted-foreground font-normal">
                   {" "}
                   / ruru-m07

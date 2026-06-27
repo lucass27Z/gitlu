@@ -16,7 +16,7 @@
     "target": "ES2022",
     "jsx": "react-jsx",
     "paths": {
-      "@gitru/ui/*": ["./src/*"]
+      "@Gitlu/ui/*": ["./src/*"]
     }
   },
   "include": ["."],

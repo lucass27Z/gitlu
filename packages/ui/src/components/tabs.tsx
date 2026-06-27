@@ -2,7 +2,7 @@
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 
 type TabsVariant = "default" | "underline";
 

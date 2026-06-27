@@ -20,15 +20,15 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { type RepositoryInfo } from "@gitru/commands";
-import { Git, Inbox } from "@gitru/icon";
+import { type RepositoryInfo } from "@Gitlu/commands";
+import { Git, Inbox } from "@Gitlu/icon";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@gitru/ui/components/avatar";
-import { Button } from "@gitru/ui/components/button";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/avatar";
+import { Button } from "@Gitlu/ui/components/button";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { getCurrentWebview } from "@tauri-apps/api/webview";
 import { ChevronLeft, ChevronRight, Plus, X } from "lucide-react";

@@ -2,8 +2,8 @@
 
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { Separator } from "@gitru/ui/components/separator";
-import { cn } from "@gitru/ui/lib/utils";
+import { Separator } from "@Gitlu/ui/components/separator";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
 

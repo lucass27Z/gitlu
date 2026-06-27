@@ -1,25 +1,25 @@
-import { AheadBehindStatus, gitVersion } from "@gitru/commands";
-import { Git } from "@gitru/icon";
+import { AheadBehindStatus, gitVersion } from "@Gitlu/commands";
+import { Git } from "@Gitlu/icon";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@gitru/ui/components/avatar";
-import { Badge } from "@gitru/ui/components/badge";
-import { useCommandNavigation } from "@gitru/ui/components/command";
+} from "@Gitlu/ui/components/avatar";
+import { Badge } from "@Gitlu/ui/components/badge";
+import { useCommandNavigation } from "@Gitlu/ui/components/command";
 import {
   Popover,
   PopoverPopup,
   PopoverTitle,
   PopoverTrigger,
-} from "@gitru/ui/components/popover";
-import { Separator } from "@gitru/ui/components/separator";
+} from "@Gitlu/ui/components/popover";
+import { Separator } from "@Gitlu/ui/components/separator";
 import {
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
-import { cn } from "@gitru/ui/lib/utils";
+} from "@Gitlu/ui/components/tooltip";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { getVersion } from "@tauri-apps/api/app";
 import {
   ArrowDown,

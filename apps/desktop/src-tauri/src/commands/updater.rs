@@ -7,7 +7,7 @@ use tauri::Emitter;
 use tauri_plugin_updater::UpdaterExt;
 use url::Url;
 
-const DEFAULT_UPDATER_BASE_URL: &str = "https://release.gitru.app";
+const DEFAULT_UPDATER_BASE_URL: &str = "https://release.Gitlu.app";
 
 #[derive(Serialize)]
 pub struct UpdateCheckResponse {

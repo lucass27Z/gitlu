@@ -1,7 +1,7 @@
-import { Button } from "@gitru/ui/components/button";
-import { CommandPanel, CommandViewConfig } from "@gitru/ui/components/command";
-import { Kbd, KbdGroup } from "@gitru/ui/components/kbd";
-import { cn } from "@gitru/ui/lib/utils";
+import { Button } from "@Gitlu/ui/components/button";
+import { CommandPanel, CommandViewConfig } from "@Gitlu/ui/components/command";
+import { Kbd, KbdGroup } from "@Gitlu/ui/components/kbd";
+import { cn } from "@Gitlu/ui/lib/utils";
 import { CornerDownLeft, GitBranch, TriangleAlert } from "lucide-react";
 import { useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";

@@ -5,7 +5,7 @@ use crate::models::branch::{
 };
 use crate::models::stash::BranchStash;
 use crate::parsers::branch::{BRANCH_STANDARD_FORMAT, parse_branch_records};
-use crate::runner::GitRunOptions;
+use crate::runner::GitlunOptions;
 use crate::service::query::QueryService;
 use crate::service::stash::StashService;
 use std::sync::Arc;
@@ -65,7 +65,7 @@ impl BranchService {
                                 BRANCH_STANDARD_FORMAT,
                                 refs,
                             ],
-                            GitRunOptions::default_read().with_timeout(Duration::from_secs(60)),
+                            GitlunOptions::default_read().with_timeout(Duration::from_secs(60)),
                         )
                         .await?;
 
@@ -113,7 +113,7 @@ impl BranchService {
                     let upstream_branch_id = runner
                         .run_with_options(
                             &["rev-parse", "@{upstream}"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await
                         .ok();
@@ -121,7 +121,7 @@ impl BranchService {
                     let output = runner
                         .run_with_options(
                             &["rev-list", "--left-right", "--count", "HEAD...@{upstream}"],
-                            GitRunOptions::default_read(),
+                            GitlunOptions::default_read(),
                         )
                         .await?;
 
@@ -169,14 +169,14 @@ impl BranchService {
         let do_switch = || {
             self.ctx
                 .runner
-                .run_with_options(&switch_args, GitRunOptions::default_read())
+                .run_with_options(&switch_args, GitlunOptions::default_read())
         };
 
         match strategy {
             Some(UncommittedChangesStrategy::StashOnCurrentBranch) => {
                 let did_create_stash = self
                     .stash()
-                    .push_gitru_stash(&current_branch.name, branch, false)
+                    .push_Gitlu_stash(&current_branch.name, branch, false)
                     .await?;
 
                 match do_switch().await {
@@ -227,13 +227,13 @@ impl BranchService {
             Some(UncommittedChangesStrategy::StashOnCurrentBranch) => {
                 let did_create_stash = self
                     .stash()
-                    .push_gitru_stash(&current_branch.name, branch, true)
+                    .push_Gitlu_stash(&current_branch.name, branch, true)
                     .await?;
 
                 match self
                     .ctx
                     .runner
-                    .run_with_options(&["switch", "-c", branch], GitRunOptions::default_read())
+                    .run_with_options(&["switch", "-c", branch], GitlunOptions::default_read())
                     .await
                 {
                     Ok(_) => {
@@ -258,7 +258,7 @@ impl BranchService {
             _ => match self
                 .ctx
                 .runner
-                .run_with_options(&["switch", "-c", branch], GitRunOptions::default_read())
+                .run_with_options(&["switch", "-c", branch], GitlunOptions::default_read())
                 .await
             {
                 Ok(_) => {
@@ -280,7 +280,7 @@ impl BranchService {
     pub async fn push(&self) -> Result<String, String> {
         self.ctx
             .runner
-            .run_with_options(&["push"], GitRunOptions::default_read())
+            .run_with_options(&["push"], GitlunOptions::default_read())
             .await?;
         self.ctx.cache.invalidate_all();
         Ok("Pushed successfully".to_string())
@@ -294,7 +294,7 @@ impl BranchService {
             .runner
             .run_with_options(
                 &["push", "-u", "origin", format!("@{}", branch.name).as_str()],
-                GitRunOptions::default_read().with_timeout(Duration::from_secs(60)),
+                GitlunOptions::default_read().with_timeout(Duration::from_secs(60)),
             )
             .await?;
 
@@ -306,7 +306,7 @@ impl BranchService {
     pub async fn pull(&self) -> Result<String, String> {
         self.ctx
             .runner
-            .run_with_options(&["pull"], GitRunOptions::default_read())
+            .run_with_options(&["pull"], GitlunOptions::default_read())
             .await?;
 
         self.ctx.cache.invalidate_all();
@@ -321,7 +321,7 @@ impl BranchService {
     pub async fn current_branch_stash(&self) -> Result<Option<BranchStash>, String> {
         let current_branch = self.get_current_branch().await?;
         self.stash()
-            .find_gitru_stash_for_branch(&current_branch.name)
+            .find_Gitlu_stash_for_branch(&current_branch.name)
             .await
     }
 
@@ -329,7 +329,7 @@ impl BranchService {
     pub async fn pop_current_branch_stash(&self) -> Result<String, String> {
         let current_branch = self.get_current_branch().await?;
         self.stash()
-            .pop_gitru_stash_for_branch(&current_branch.name)
+            .pop_Gitlu_stash_for_branch(&current_branch.name)
             .await
     }
 }

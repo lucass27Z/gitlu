@@ -1,4 +1,4 @@
-import type { FileStatus } from "@gitru/commands";
+import type { FileStatus } from "@Gitlu/commands";
 import { create } from "zustand";
 
 type FileSelectionEntry = {

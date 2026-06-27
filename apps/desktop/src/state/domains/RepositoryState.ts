@@ -30,7 +30,7 @@ import {
   statusAheadBehind,
   switchBranch,
   UncommittedChangesStrategy,
-} from "@gitru/commands";
+} from "@Gitlu/commands";
 import { QueryClient } from "@tanstack/react-query";
 import { StateDomain } from "../core/StateManager";
 import { StashState } from "./StashState";

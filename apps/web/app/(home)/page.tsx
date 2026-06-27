@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import HomePage from "@/components/homePage";
 
 export const metadata: Metadata = {
-  title: "Gitru",
-  description: "Gitru - A Git client",
-  icons: new URL("/favicon.ico", "https://gitru.app"),
+  title: "Gitlu",
+  description: "Gitlu - A Git client",
+  icons: new URL("/favicon.ico", "https://Gitlu.app"),
 };
 
 export default function Page() {

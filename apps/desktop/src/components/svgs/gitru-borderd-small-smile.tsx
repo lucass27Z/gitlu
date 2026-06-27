@@ -1,4 +1,4 @@
-export const GitruBorderedSmallSmileSVG = () => {
+export const GitluBorderedSmallSmileSVG = () => {
   return (
     <div className="[--color-a:#C7C7C7] [--color-b:#EEEEEE] [--color-c:white] dark:[--color-a:#414141] dark:[--color-b:#202020] dark:[--color-c:black]">
       <svg

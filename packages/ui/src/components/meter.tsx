@@ -2,7 +2,7 @@
 
 import { Meter as MeterPrimitive } from "@base-ui-components/react/meter";
 
-import { cn } from "@gitru/ui/lib/utils";
+import { cn } from "@Gitlu/ui/lib/utils";
 
 function Meter({ className, children, ...props }: MeterPrimitive.Root.Props) {
   return (

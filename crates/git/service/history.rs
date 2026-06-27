@@ -5,7 +5,7 @@ use crate::models::graph::HistoryQuery;
 use crate::models::history::HistoryGraphResponse;
 use crate::parsers::commit::COMMIT_STANDARD_FORMAT;
 use crate::parsers::history::parse_history_records;
-use crate::runner::GitRunOptions;
+use crate::runner::GitlunOptions;
 use crate::service::graph as graph_service;
 use std::sync::Arc;
 use std::time::Duration;
@@ -39,7 +39,7 @@ impl HistoryService {
                     let output = runner
                         .run_with_options(
                             &["log", &format_arg, "--skip", &skip_str, "-n", &limit_str],
-                            GitRunOptions::default_read().with_timeout(Duration::from_secs(60)),
+                            GitlunOptions::default_read().with_timeout(Duration::from_secs(60)),
                         )
                         .await?;
 

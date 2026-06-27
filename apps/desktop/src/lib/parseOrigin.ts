@@ -12,8 +12,8 @@ interface ParseOriginResult {
 
 /**
  * if we get origin like
- * git@github.com:ruru-m07/gitru.git or
- * https://github.com/ruru-m07/gitru.git
+ * git@github.com:ruru-m07/Gitlu.git or
+ * https://github.com/ruru-m07/Gitlu.git
  *
  * we need to parse origin to get github.com
  * @return {ParseOriginResult}

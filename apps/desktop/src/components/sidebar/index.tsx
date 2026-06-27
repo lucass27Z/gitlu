@@ -1,17 +1,17 @@
-import { Git, Inbox, Issue, PullRequest } from "@gitru/icon";
+import { Git, Inbox, Issue, PullRequest } from "@Gitlu/icon";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@gitru/ui/components/avatar";
-import { Button } from "@gitru/ui/components/button";
-import { ScrollArea } from "@gitru/ui/components/scroll-area";
+} from "@Gitlu/ui/components/avatar";
+import { Button } from "@Gitlu/ui/components/button";
+import { ScrollArea } from "@Gitlu/ui/components/scroll-area";
 import {
   Tooltip,
   TooltipPopup,
   TooltipProvider,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
+} from "@Gitlu/ui/components/tooltip";
 import { Download, Plus, RotateCcw } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 import SideBarItems from "./items";
@@ -102,7 +102,7 @@ const Sidebar = () => {
                   "shadcn-ui",
                   "pierrecomputer",
                   "raycast",
-                  "gitru-app",
+                  "Gitlu-app",
                 ].map((v) => (
                   <Button
                     className="size-8 p-0"

@@ -8,12 +8,12 @@ use tokio::sync::Mutex as AsyncMutex;
 use tokio::time::{sleep, timeout};
 
 #[derive(Clone, Copy)]
-pub struct GitRunOptions {
+pub struct GitlunOptions {
     pub timeout: Duration,
     pub allow_failure_codes: &'static [i32],
 }
 
-impl GitRunOptions {
+impl GitlunOptions {
     pub fn default_read() -> Self {
         Self {
             timeout: Duration::from_secs(30),
@@ -61,7 +61,7 @@ impl GitCommandRunner {
     pub async fn run_with_options(
         &self,
         args: &[&str],
-        options: GitRunOptions,
+        options: GitlunOptions,
     ) -> Result<String, String> {
         run_git_command_async(&self.repo_path, args, None, options).await
     }
@@ -69,7 +69,7 @@ impl GitCommandRunner {
     pub async fn run_with_options_unlocked(
         &self,
         args: &[&str],
-        options: GitRunOptions,
+        options: GitlunOptions,
     ) -> Result<String, String> {
         run_git_command_async_unlocked(&self.repo_path, args, None, options).await
     }
@@ -78,7 +78,7 @@ impl GitCommandRunner {
         &self,
         args: &[&str],
         input: &str,
-        options: GitRunOptions,
+        options: GitlunOptions,
     ) -> Result<String, String> {
         run_git_command_async(&self.repo_path, args, Some(input.as_bytes()), options).await
     }
@@ -86,7 +86,7 @@ impl GitCommandRunner {
     pub async fn run_with_options_bytes(
         &self,
         args: &[&str],
-        options: GitRunOptions,
+        options: GitlunOptions,
     ) -> Result<Vec<u8>, String> {
         run_git_command_bytes_async(&self.repo_path, args, None, options).await
     }
@@ -94,7 +94,7 @@ impl GitCommandRunner {
     pub async fn run_with_options_bytes_unlocked(
         &self,
         args: &[&str],
-        options: GitRunOptions,
+        options: GitlunOptions,
     ) -> Result<Vec<u8>, String> {
         run_git_command_bytes_async_unlocked(&self.repo_path, args, None, options).await
     }
@@ -113,7 +113,7 @@ async fn run_git_command_async(
     repo_path: &Path,
     args: &[&str],
     input: Option<&[u8]>,
-    options: GitRunOptions,
+    options: GitlunOptions,
 ) -> Result<String, String> {
     let repo_lock = command_lock_for_repo(repo_path)?;
     let _guard = repo_lock.lock().await;
@@ -138,7 +138,7 @@ async fn run_git_command_async_unlocked(
     repo_path: &Path,
     args: &[&str],
     input: Option<&[u8]>,
-    options: GitRunOptions,
+    options: GitlunOptions,
 ) -> Result<String, String> {
     let mut attempt: u32 = 0;
     const MAX_INDEX_LOCK_RETRIES: u32 = 6;
@@ -160,7 +160,7 @@ async fn run_git_command_bytes_async(
     repo_path: &Path,
     args: &[&str],
     input: Option<&[u8]>,
-    options: GitRunOptions,
+    options: GitlunOptions,
 ) -> Result<Vec<u8>, String> {
     let repo_lock = command_lock_for_repo(repo_path)?;
     let _guard = repo_lock.lock().await;
@@ -185,7 +185,7 @@ async fn run_git_command_bytes_async_unlocked(
     repo_path: &Path,
     args: &[&str],
     input: Option<&[u8]>,
-    options: GitRunOptions,
+    options: GitlunOptions,
 ) -> Result<Vec<u8>, String> {
     let mut attempt: u32 = 0;
     const MAX_INDEX_LOCK_RETRIES: u32 = 6;
@@ -207,7 +207,7 @@ async fn run_git_command_once_output(
     repo_path: &Path,
     args: &[&str],
     input: Option<&[u8]>,
-    options: GitRunOptions,
+    options: GitlunOptions,
 ) -> Result<std::process::Output, String> {
     let git_binary = git_binary_path()?;
     let git_path_env = git_path_env()?;
@@ -567,24 +567,24 @@ mod tests {
         assert!(!is_index_lock_error(err));
     }
 
-    // ── GitRunOptions tests ──────────────────────────────────────────
+    // ── GitlunOptions tests ──────────────────────────────────────────
 
     #[test]
     fn default_read_options() {
-        let opts = GitRunOptions::default_read();
+        let opts = GitlunOptions::default_read();
         assert_eq!(opts.timeout, Duration::from_secs(30));
         assert!(opts.allow_failure_codes.is_empty());
     }
 
     #[test]
     fn with_timeout() {
-        let opts = GitRunOptions::default_read().with_timeout(Duration::from_secs(60));
+        let opts = GitlunOptions::default_read().with_timeout(Duration::from_secs(60));
         assert_eq!(opts.timeout, Duration::from_secs(60));
     }
 
     #[test]
     fn allow_exit_codes() {
-        let opts = GitRunOptions::default_read().allow_exit_codes(&[1, 2]);
+        let opts = GitlunOptions::default_read().allow_exit_codes(&[1, 2]);
         assert_eq!(opts.allow_failure_codes, &[1, 2]);
     }
 

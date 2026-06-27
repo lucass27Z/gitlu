@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@gitru/ui/components/button";
-import type { CopyState } from "@gitru/ui/hooks/use-copy-to-clipboard";
-import { useCopyToClipboard } from "@gitru/ui/hooks/use-copy-to-clipboard";
+import { Button } from "@Gitlu/ui/components/button";
+import type { CopyState } from "@Gitlu/ui/hooks/use-copy-to-clipboard";
+import { useCopyToClipboard } from "@Gitlu/ui/hooks/use-copy-to-clipboard";
 import { CheckIcon, CircleXIcon, CopyIcon } from "lucide-react";
 import type { HTMLMotionProps, Variants } from "motion/react";
 import { AnimatePresence, motion } from "motion/react";

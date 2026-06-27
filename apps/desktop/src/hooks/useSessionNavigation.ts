@@ -5,7 +5,7 @@ import {
   sessionGoBack,
   sessionGoForward,
   sessionPushToHistory,
-} from "@gitru/commands";
+} from "@Gitlu/commands";
 import { useCallback, useEffect, useState } from "react";
 
 export function useSessionNavigation(sessionId: string | null) {

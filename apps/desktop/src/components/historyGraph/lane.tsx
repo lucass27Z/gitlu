@@ -1,15 +1,15 @@
-import { GraphRow } from "@gitru/commands";
+import { GraphRow } from "@Gitlu/commands";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@gitru/ui/components/avatar";
-import { Badge } from "@gitru/ui/components/badge";
+} from "@Gitlu/ui/components/avatar";
+import { Badge } from "@Gitlu/ui/components/badge";
 import {
   Tooltip,
   TooltipPopup,
   TooltipTrigger,
-} from "@gitru/ui/components/tooltip";
+} from "@Gitlu/ui/components/tooltip";
 import { Tag, Tags } from "lucide-react";
 
 type GraphLaneProps = {
