@@ -18,7 +18,7 @@ pub fn parse_stash_list(output: &str) -> Result<Vec<StashEntry>, String> {
         let message = parts.next().unwrap_or("").to_string();
 
         let index = parse_stash_index(&reference)?;
-        let is_Gitlu = parse_Gitlu_stash_message(&message).is_some();
+        let is_gitlu = parse_gitlu_stash_message(&message).is_some();
         let branch = parse_branch_from_message(&message);
 
         result.push(StashEntry {
@@ -26,7 +26,7 @@ pub fn parse_stash_list(output: &str) -> Result<Vec<StashEntry>, String> {
             reference,
             message,
             branch,
-            is_Gitlu,
+            is_gitlu,
         });
     }
 
@@ -96,7 +96,7 @@ pub fn parse_stash_file_status(output: &[u8]) -> Result<Vec<FileStatus>, String>
 /// Parse a `!!Gitlu<from> -> <to>` stash message.
 ///
 /// Returns `(from_branch, to_branch)` if the message matches the pattern.
-pub fn parse_Gitlu_stash_message(message: &str) -> Option<(String, String)> {
+pub fn parse_gitlu_stash_message(message: &str) -> Option<(String, String)> {
     let marker = "!!Gitlu<";
     let lower = message.to_ascii_lowercase();
     let lower_marker = marker.to_ascii_lowercase();
@@ -185,27 +185,27 @@ mod tests {
     // ── Pure function tests (no git data needed) ─────────────────────
 
     #[test]
-    fn test_parse_Gitlu_stash_message() {
+    fn test_parse_gitlu_stash_message() {
         let msg = "!!Gitlu<feature-branch> -> <main>";
-        let result = parse_Gitlu_stash_message(msg).unwrap();
+        let result = parse_gitlu_stash_message(msg).unwrap();
         assert_eq!(result.0, "feature-branch");
         assert_eq!(result.1, "main");
     }
 
     #[test]
-    fn test_parse_Gitlu_stash_message_case_insensitive() {
+    fn test_parse_gitlu_stash_message_case_insensitive() {
         // Also matches legacy !!Gitlu pattern (case-insensitive)
         let msg = "!!Gitlu<old-branch> -> <new-branch>";
-        let result = parse_Gitlu_stash_message(msg).unwrap();
+        let result = parse_gitlu_stash_message(msg).unwrap();
         assert_eq!(result.0, "old-branch");
         assert_eq!(result.1, "new-branch");
     }
 
     #[test]
-    fn test_parse_Gitlu_stash_message_invalid() {
-        assert!(parse_Gitlu_stash_message("Regular stash message").is_none());
-        assert!(parse_Gitlu_stash_message("!!Gitlu<> -> <main>").is_none());
-        assert!(parse_Gitlu_stash_message("!!Gitlu<feature> -> <>").is_none());
+    fn test_parse_gitlu_stash_message_invalid() {
+        assert!(parse_gitlu_stash_message("Regular stash message").is_none());
+        assert!(parse_gitlu_stash_message("!!Gitlu<> -> <main>").is_none());
+        assert!(parse_gitlu_stash_message("!!Gitlu<feature> -> <>").is_none());
     }
 
     #[test]

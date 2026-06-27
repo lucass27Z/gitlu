@@ -6,7 +6,7 @@ use crate::{
     models::stash::{BranchStash, StashEntry, StashQuickStat, StashShowResponse},
     models::status::FileStatusKind,
     parsers::stash::{
-        branch_name_matches, parse_Gitlu_stash_message, parse_stash_file_status, parse_stash_list,
+        branch_name_matches, parse_gitlu_stash_message, parse_stash_file_status, parse_stash_list,
         parse_stash_stat, validate_stash_ref,
     },
     runner::GitlunOptions,
@@ -357,7 +357,7 @@ impl StashService {
     ///
     /// Creates a stash with the `!!Gitlu<from> -> <to>` message pattern.
     #[logger::logger]
-    pub async fn push_Gitlu_stash(
+    pub async fn push_gitlu_stash(
         &self,
         from_branch: &str,
         to_branch: &str,
@@ -386,7 +386,7 @@ impl StashService {
 
     /// Find a Gitlu-managed stash for a specific branch.
     #[logger::logger]
-    pub async fn find_Gitlu_stash_for_branch(
+    pub async fn find_gitlu_stash_for_branch(
         &self,
         branch: &str,
     ) -> Result<Option<BranchStash>, String> {
@@ -412,7 +412,7 @@ impl StashService {
                 continue;
             };
 
-            let Some((from_branch, to_branch)) = parse_Gitlu_stash_message(message) else {
+            let Some((from_branch, to_branch)) = parse_gitlu_stash_message(message) else {
                 continue;
             };
 
@@ -441,9 +441,9 @@ impl StashService {
 
     /// Pop the Gitlu-managed stash for the current branch.
     #[logger::logger]
-    pub async fn pop_Gitlu_stash_for_branch(&self, branch: &str) -> Result<String, String> {
+    pub async fn pop_gitlu_stash_for_branch(&self, branch: &str) -> Result<String, String> {
         let stash = self
-            .find_Gitlu_stash_for_branch(branch)
+            .find_gitlu_stash_for_branch(branch)
             .await?
             .ok_or_else(|| format!("No !!Gitlu stash found for branch '{branch}'"))?;
 
